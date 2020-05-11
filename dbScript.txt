@@ -1,0 +1,61 @@
+CREATE TABLE user(
+                   username VARCHAR(50),
+                   password VARCHAR(50),
+                   name VARCHAR(100),
+                   contact_no VARCHAR(10),
+                   email VARCHAR(50),
+                   CONSTRAINT PRIMARY KEY (username)
+);
+
+CREATE TABLE hospital(
+  id VARCHAR(4),
+  name VARCHAR(50),
+  city VARCHAR(50),
+  district VARCHAR(50),
+  capacity VARCHAR(50),
+  director VARCHAR(50),
+  directorContactNo VARCHAR(50),
+  tel1 VARCHAR(10),
+  tel2 VARCHAR(10),
+  fax VARCHAR(30),
+  email VARCHAR(50),
+  CONSTRAINT PRIMARY KEY (id)
+);
+
+CREATE TABLE qurantineCenter(
+  id VARCHAR(4),
+  name VARCHAR(50),
+  city VARCHAR(50),
+  district VARCHAR(50),
+  head VARCHAR(50),
+  headContactNo VARCHAR(10),
+  tel1 VARCHAR(10),
+  tel2 VARCHAR(10),
+  capacity INT,
+  CONSTRAINT PRIMARY KEY (id)
+);
+
+CREATE TABLE user_hospital(
+  username VARCHAR(50),
+  hospital_id VARCHAR(4),
+  CONSTRAINT PRIMARY KEY (username,hospital_id),
+  CONSTRAINT FOREIGN KEY (username) REFERENCES user(username),
+  CONSTRAINT FOREIGN KEY (hospital_id) REFERENCES hospital(id)
+);
+
+CREATE TABLE user_qurantineCenter(
+                                   username VARCHAR(50),
+                                   quarantineCenter_id VARCHAR(4),
+                                   CONSTRAINT PRIMARY KEY (username,quarantineCenter_id),
+                                   CONSTRAINT FOREIGN KEY (username) REFERENCES user(username),
+                                   CONSTRAINT FOREIGN KEY (quarantineCenter_id) REFERENCES qurantineCenter(id)
+);
+
+
+CREATE TABLE globalData(
+  updatedDate DATETIME,
+  cumulativeCount INT,
+  recoveries INT,
+  deaths INT,
+  CONSTRAINT PRIMARY KEY (updatedDate)
+);
