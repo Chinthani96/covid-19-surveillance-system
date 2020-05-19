@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b8e67409-1350-4d5c-8635-0c91a929c2b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6c8a1bf6-ccdf-4d00-9173-72a588f71b21.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6c8a1bf6-ccdf-4d00-9173-72a588f71b21.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/DashboardController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/DashboardController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/GlobalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/GlobalController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/HospitalsController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/HospitalsController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/HospitalsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/HospitalsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/GlobalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/GlobalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/HospitalsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/HospitalsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBConnection.java" afterDir="false" />
-    </list>
+    <list default="true" id="b8e67409-1350-4d5c-8635-0c91a929c2b0" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -93,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/db/DBConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="120" selection-start-line="15" selection-start-column="120" selection-end-line="15" selection-end-column="120" />
+            <state relative-caret-position="245">
+              <caret line="15" column="108" selection-start-line="15" selection-start-column="108" selection-end-line="15" selection-end-column="108" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,11 +92,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/GlobalController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="47" column="119" lean-forward="true" selection-start-line="47" selection-start-column="119" selection-end-line="47" selection-end-column="119" />
+            <state relative-caret-position="166">
+              <caret line="71" column="98" selection-start-line="71" selection-start-column="98" selection-end-line="71" selection-end-column="98" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#831#862#0" expanded="true" />
@@ -222,12 +209,12 @@
         <option value="$PROJECT_DIR$/src/util/HospitalsTM.java" />
         <option value="$PROJECT_DIR$/src/util/QuarantineCentersTM.java" />
         <option value="$PROJECT_DIR$/src/controllers/QuarantineCentresController.java" />
-        <option value="$PROJECT_DIR$/src/db/DBConnection.java" />
         <option value="$PROJECT_DIR$/src/controllers/DashboardController.java" />
         <option value="$PROJECT_DIR$/src/controllers/HospitalsController.java" />
         <option value="$PROJECT_DIR$/src/controllers/UsersController.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6c8a1bf6-ccdf-4d00-9173-72a588f71b21/console.sql" />
         <option value="$PROJECT_DIR$/src/controllers/GlobalController.java" />
+        <option value="$PROJECT_DIR$/src/db/DBConnection.java" />
       </list>
     </option>
   </component>
@@ -296,7 +283,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589914411697" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1589914715185" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="node.js.path.for.package.jscs" value="project" />
     <property name="node.js.selected.package.jscs" value="" />
@@ -361,16 +348,15 @@
       <workItem from="1589879812802" duration="1344000" />
       <workItem from="1589881330969" duration="2826000" />
       <workItem from="1589886403073" duration="1905000" />
-      <workItem from="1589893147824" duration="14463000" />
+      <workItem from="1589893147824" duration="14734000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38531000" />
+    <option name="totallyTimeSpent" value="38802000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2442363" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -389,10 +375,10 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32913166" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32913166" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32913166" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" />
-      <window_info anchor="bottom" id="Database Console" order="13" visible="true" weight="0.32913166" />
+      <window_info anchor="bottom" id="Database Console" order="13" weight="0.32913166" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -479,27 +465,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1224">
           <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/QuarantineCentresController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1232#1263#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/db/DBConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="120" selection-start-line="15" selection-start-column="120" selection-end-line="15" selection-end-column="120" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -667,13 +632,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/QuarantineCentresController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="714">
+          <caret line="42" column="27" selection-start-line="42" selection-start-column="27" selection-end-line="42" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1232#1263#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/GlobalController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="47" column="119" lean-forward="true" selection-start-line="47" selection-start-column="119" selection-end-line="47" selection-end-column="119" />
+        <state relative-caret-position="166">
+          <caret line="71" column="98" selection-start-line="71" selection-start-column="98" selection-end-line="71" selection-end-column="98" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#831#862#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/db/DBConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="15" column="108" selection-start-line="15" selection-start-column="108" selection-end-line="15" selection-end-column="108" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

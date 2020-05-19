@@ -100,13 +100,12 @@ public class DashboardController {
     public void loadGlobalData(){
         try {
             Statement stm = DBConnection.getInstance().getConnection().createStatement();
-            ResultSet rst = stm.executeQuery("SELECT * FROM globalData");
+            ResultSet rst = stm.executeQuery("SELECT cumulativeCount,recoveries,deaths FROM globalData");
 
             while(rst.next()){
-                String dateTime = rst.getString(1);
-                String cumulativeCount = rst.getString(2);
-                String recoveries = rst.getString(3);
-                String deaths = rst.getString(4);
+                String cumulativeCount = rst.getString(1);
+                String recoveries = rst.getString(2);
+                String deaths = rst.getString(3);
 
                 lblConfirmedCases.setText(cumulativeCount);
                 lblRecoveredCases.setText(recoveries);
