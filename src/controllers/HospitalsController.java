@@ -36,10 +36,9 @@ public class HospitalsController {
     public JFXButton btnDelete;
 
     public void initialize(){
-        // 1. load the hospitals
+
         loadHospitals();
 
-        ObservableList<HospitalsTM> hospitals = lstHospitals.getItems();
 
         lstHospitals.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<HospitalsTM>() {
             @Override
@@ -47,7 +46,6 @@ public class HospitalsController {
                 if(selectedHospital==null){
                     return;
                 }
-
 
             }
         });

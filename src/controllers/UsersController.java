@@ -46,6 +46,7 @@ public class UsersController {
             ResultSet rst = stm.executeQuery("SELECT * FROM user");
 
 
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

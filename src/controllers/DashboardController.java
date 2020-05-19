@@ -33,16 +33,16 @@ public class DashboardController {
     public AnchorPane subAnchorPane;
 
     public void initialize(){
-        //1. Load the global status
+
         loadGlobalData();
 
-        //2. Load the number of users
+
         loadNumberOfUsers();
 
-        //3. Load the number of hospitals
+
         loadNumberOfHospitals();
 
-        //4. Load the number of quarantine centers
+
         loadNumberOfQuarantineCenters();
 
     }
@@ -96,6 +96,7 @@ public class DashboardController {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     public void loadGlobalData(){
         try {
             Statement stm = DBConnection.getInstance().getConnection().createStatement();

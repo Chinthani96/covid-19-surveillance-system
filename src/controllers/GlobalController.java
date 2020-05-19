@@ -4,11 +4,15 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.Date;
 
 public class GlobalController {
@@ -24,16 +28,40 @@ public class GlobalController {
     public JFXTextField txtRecoveredCases;
 
     public void initialize(){
-        // 1. Load the global data
+
         loadGlobalData();
 
-        //initializing the date
-        Date date = new Date();
-        txtDate.setText(date.toString());
-
+        LocalDate today = LocalDate.now();
+        txtDate.setText(today.toString());
     }
 
     public void btnUpdate_OnAction(ActionEvent actionEvent) {
+
+        String date = txtDate.getText();
+        String confirmedCases = txtConfirmedCases.getText();
+        String recoveries = txtRecoveredCases.getText();
+        String deaths = txtDeaths.getText();
+
+
+
+        try {
+            PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO globalData(updatedDate,cumulativeCount,recoveries,deaths) VALUES(?,?,?,?)");
+            pst.setObject(1, date);
+            pst.setObject(2, confirmedCases);
+            pst.setObject(3, recoveries);
+            pst.setObject(4, deaths);
+
+            int affectedRows = pst.executeUpdate();
+            loadGlobalData();
+
+            if(affectedRows<0){
+
+                new Alert(Alert.AlertType.ERROR,"Failed to update",ButtonType.OK).show();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -41,7 +69,7 @@ public class GlobalController {
     public void loadGlobalData(){
         try {
             Statement stm = DBConnection.getInstance().getConnection().createStatement();
-            ResultSet rst = stm.executeQuery("SELECT * FROM globalData");
+            ResultSet rst = stm.executeQuery("SELECT updatedDate,cumulativeCount,recoveries,deaths FROM globalData ORDER BY updatedDate DESC LIMIT 1");
 
             while(rst.next()){
                 String dateTime = rst.getString(1);
