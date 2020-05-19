@@ -100,6 +100,6 @@ public class QuarantineCentersTM {
 
     @Override
     public String toString() {
-        return this.id;
+        return this.name;
     }
 }
