@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.GlobalController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="800.0" prefWidth="700.0" style="-fx-background-color: #D7D7D7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GlobalController">
+   <children>
+      <AnchorPane layoutX="45.0" layoutY="132.0" prefHeight="123.0" prefWidth="200.0" style="-fx-background-color: white;">
+         <children>
+            <Label fx:id="lblConfirmedCases" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="113.0" prefWidth="186.0" text="3029333">
+               <font>
+                  <Font name="System Bold" size="42.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="261.0" layoutY="132.0" prefHeight="123.0" prefWidth="200.0" style="-fx-background-color: white;">
+         <children>
+            <Label fx:id="lblRecoveredCases" alignment="CENTER" layoutX="5.0" layoutY="3.0" prefHeight="113.0" prefWidth="192.0" text="3029333">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="471.0" layoutY="132.0" prefHeight="123.0" prefWidth="200.0" style="-fx-background-color: white;">
+         <children>
+            <Label fx:id="lblDeaths" alignment="CENTER" layoutX="-2.0" layoutY="-3.0" prefHeight="123.0" prefWidth="200.0" text="3029333">
+               <font>
+                  <Font size="42.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="98.0" layoutY="107.0" text="Confirmed Cases" />
+      <Label layoutX="313.0" layoutY="107.0" text="Recovered Cases" />
+      <Label layoutX="545.0" layoutY="107.0" text="Deaths" />
+      <Line endX="561.0" layoutX="119.0" layoutY="88.0" startX="-100.0" />
+      <Label layoutX="19.0" layoutY="39.0" prefHeight="39.0" prefWidth="225.0" text="Global">
+         <font>
+            <Font name="Charter Bold" size="18.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="45.0" layoutY="280.0" prefHeight="51.0" prefWidth="627.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="28.0" layoutY="17.0" prefHeight="17.0" prefWidth="316.0" text="Last Updated" />
+            <JFXTextField fx:id="txtLastUpdated" editable="false" layoutX="199.0" layoutY="12.0" prefHeight="27.0" prefWidth="340.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="45.0" layoutY="353.0" prefHeight="405.0" prefWidth="627.0" style="-fx-background-color: white;">
+         <children>
+            <AnchorPane fx:id="updatePane" prefHeight="39.0" prefWidth="627.0" style="-fx-background-color: black;">
+               <children>
+                  <Label layoutX="291.0" layoutY="11.0" text="Update Status" textFill="#ebe7e7" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="52.0" layoutY="76.0" prefHeight="27.0" prefWidth="145.0" text="Date" />
+            <Label layoutX="52.0" layoutY="154.0" text="Confirmed Cases" />
+            <Label layoutX="52.0" layoutY="225.0" text="Recovered Cases" />
+            <Label layoutX="52.0" layoutY="294.0" text="Deaths" />
+            <JFXButton fx:id="btnUpdate" layoutX="221.0" layoutY="340.0" onAction="#btnUpdate_OnAction" prefHeight="51.0" prefWidth="186.0" style="-fx-background-color: black;" text="Update" textFill="#d7d0d0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </JFXButton>
+            <JFXTextField fx:id="txtDate" layoutX="206.0" layoutY="62.0" prefHeight="27.0" prefWidth="340.0" />
+            <JFXTextField fx:id="txtDeaths" layoutX="206.0" layoutY="275.0" prefHeight="27.0" prefWidth="340.0" />
+            <JFXTextField fx:id="txtConfirmedCases" layoutX="206.0" layoutY="135.0" prefHeight="27.0" prefWidth="340.0" />
+            <JFXTextField fx:id="txtRecoveredCases" layoutX="206.0" layoutY="206.0" prefHeight="27.0" prefWidth="340.0" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

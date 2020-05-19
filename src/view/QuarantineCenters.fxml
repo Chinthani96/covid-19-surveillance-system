@@ -12,35 +12,32 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="700.0" style="-fx-background-color: #D7D7D7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HospitalsController">
+<AnchorPane prefHeight="800.0" prefWidth="700.0" style="-fx-background-color: #D7D7D7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.QuarantineCentresController">
    <children>
-      <Label layoutX="24.0" layoutY="34.0" prefHeight="40.0" prefWidth="273.0" text="Hospitals">
+      <Label layoutX="24.0" layoutY="34.0" prefHeight="40.0" prefWidth="273.0" text="Qurarantine Centers">
          <font>
             <Font name="Charter Bold" size="24.0" />
          </font></Label>
       <Line endX="548.0" layoutX="126.0" layoutY="88.0" startX="-100.0" />
-      <JFXListView fx:id="lstHospitals" layoutX="26.0" layoutY="155.0" prefHeight="166.0" prefWidth="648.0" />
-      <TextField fx:id="txtSearchHospital" layoutX="26.0" layoutY="124.0" prefHeight="31.0" prefWidth="649.0" promptText=" Search Hospital" />
-      <JFXButton fx:id="btnAddHospital" layoutX="27.0" layoutY="325.0" onAction="#btnAddHospital_OnAction" prefHeight="24.0" prefWidth="647.0" style="-fx-background-color: black;" text="Add Hospital" textFill="#f2e8e8" />
-      <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="283.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
+      <JFXListView fx:id="lstQuarantineCenters" layoutX="26.0" layoutY="155.0" prefHeight="166.0" prefWidth="648.0" />
+      <TextField fx:id="txtSearchHospital" layoutX="26.0" layoutY="124.0" prefHeight="31.0" prefWidth="649.0" promptText="Search Quarantine Centers" />
+      <JFXButton fx:id="btnQuarantineCenter" layoutX="27.0" layoutY="325.0" onAction="#btnQuarantineCenter_OnAction" prefHeight="24.0" prefWidth="647.0" style="-fx-background-color: black;" text="Add Quarantine Center" textFill="#f2e8e8" />
+      <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="262.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../assets/add-icon.png" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="ancpnHospitalDetails" layoutX="28.0" layoutY="367.0" prefHeight="405.0" prefWidth="644.0" style="-fx-background-color: white;">
+      <AnchorPane fx:id="ancpnQuarantineCenter" layoutX="28.0" layoutY="367.0" prefHeight="405.0" prefWidth="644.0" style="-fx-background-color: white;">
          <children>
             <JFXTextField fx:id="txtName" layoutX="44.0" layoutY="26.0" prefHeight="27.0" prefWidth="337.0" promptText="Name" />
             <JFXTextField fx:id="txtID" editable="false" layoutX="471.0" layoutY="26.0" prefHeight="17.0" prefWidth="123.0" promptText="ID" />
             <JFXComboBox fx:id="cmbDistricts" layoutX="45.0" layoutY="69.0" prefHeight="21.0" prefWidth="550.0" promptText="District" />
             <JFXTextField fx:id="txtCity" layoutX="45.0" layoutY="119.0" prefHeight="27.0" prefWidth="335.0" promptText="City" />
             <JFXTextField fx:id="txtCapacity" layoutX="471.0" layoutY="119.0" prefHeight="27.0" prefWidth="127.0" promptText="Capacity" />
-            <JFXTextField fx:id="txtDirector" layoutX="45.0" layoutY="171.0" prefHeight="27.0" prefWidth="336.0" promptText="Director" />
-            <JFXTextField fx:id="txtDirectorContact" layoutX="471.0" layoutY="172.0" prefHeight="27.0" prefWidth="127.0" promptText="Director Contact no:" />
-            <JFXTextField fx:id="txtTel1" layoutX="46.0" layoutY="253.0" promptText="Contact 01" />
-            <JFXTextField fx:id="txtTel2" layoutX="248.0" layoutY="253.0" promptText="Contact 02" />
-            <JFXTextField fx:id="txtTel3" layoutX="458.0" layoutY="254.0" promptText="Contact 03" />
-            <JFXTextField fx:id="txtFax" layoutX="51.0" layoutY="308.0" promptText="Fax num" />
-            <JFXTextField fx:id="txtEmail" layoutX="462.0" layoutY="306.0" promptText="email" />
+            <JFXTextField fx:id="txtDirector" layoutX="45.0" layoutY="171.0" prefHeight="27.0" prefWidth="336.0" promptText="Head" />
+            <JFXTextField fx:id="txtDirectorContact" layoutX="471.0" layoutY="172.0" prefHeight="27.0" prefWidth="127.0" promptText="Head Contact no:" />
+            <JFXTextField fx:id="txtTel1" layoutX="46.0" layoutY="253.0" promptText="telephone 01" />
+            <JFXTextField fx:id="txtTel2" layoutX="250.0" layoutY="253.0" promptText="telephone 02" />
             <JFXButton fx:id="btnSave" layoutX="225.0" layoutY="354.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="Save" textFill="#f2e9e9" />
             <JFXButton fx:id="btnDelete" layoutX="341.0" layoutY="354.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="Delete" textFill="#f5eaea" />
          </children>
