@@ -37,12 +37,12 @@ public class HospitalsController {
     public JFXButton btnSave;
     public JFXButton btnDelete;
 
+    @SuppressWarnings("Duplicates")
     public void initialize(){
 
         //basic initializations
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
-        btnAddHospital.setDisable(false);
 
         loadHospitals();
 
@@ -82,6 +82,7 @@ public class HospitalsController {
         });
     }
 
+    @SuppressWarnings("Duplicates")
     public void btnAddHospital_OnAction(ActionEvent actionEvent) {
         //initializing the buttons and the text fields right after the Add Hospital Button is clicked
         btnDelete.setDisable(true);
@@ -188,6 +189,7 @@ public class HospitalsController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        loadHospitals();
     }
 
     @SuppressWarnings("Duplicates")

@@ -34,8 +34,8 @@
             <JFXComboBox fx:id="cmbDistricts" layoutX="45.0" layoutY="69.0" prefHeight="21.0" prefWidth="550.0" promptText="District" />
             <JFXTextField fx:id="txtCity" layoutX="45.0" layoutY="119.0" prefHeight="27.0" prefWidth="335.0" promptText="City" />
             <JFXTextField fx:id="txtCapacity" layoutX="471.0" layoutY="119.0" prefHeight="27.0" prefWidth="127.0" promptText="Capacity" />
-            <JFXTextField fx:id="txtDirector" layoutX="45.0" layoutY="171.0" prefHeight="27.0" prefWidth="336.0" promptText="Head" />
-            <JFXTextField fx:id="txtDirectorContact" layoutX="471.0" layoutY="172.0" prefHeight="27.0" prefWidth="127.0" promptText="Head Contact no:" />
+            <JFXTextField fx:id="txtHead" layoutX="45.0" layoutY="171.0" prefHeight="27.0" prefWidth="336.0" promptText="Head" />
+            <JFXTextField fx:id="txtHeadContact" layoutX="471.0" layoutY="172.0" prefHeight="27.0" prefWidth="127.0" promptText="Head Contact no:" />
             <JFXTextField fx:id="txtTel1" layoutX="46.0" layoutY="253.0" promptText="telephone 01" />
             <JFXTextField fx:id="txtTel2" layoutX="250.0" layoutY="253.0" promptText="telephone 02" />
             <JFXButton fx:id="btnSave" layoutX="225.0" layoutY="354.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="Save" textFill="#f2e9e9" />

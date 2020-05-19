@@ -9,9 +9,12 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import util.QuarantineCentersTM;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,16 +28,32 @@ public class QuarantineCentresController {
     public JFXComboBox cmbDistricts;
     public JFXTextField txtCity;
     public JFXTextField txtCapacity;
-    public JFXTextField txtDirector;
-    public JFXTextField txtDirectorContact;
+    public JFXTextField txtHead;
+    public JFXTextField txtHeadContact;
     public JFXTextField txtTel1;
     public JFXTextField txtTel2;
     public JFXButton btnSave;
     public JFXButton btnDelete;
 
+    @SuppressWarnings("Duplicates")
     public void initialize(){
-        // 1. Load the quarantine centers and the details
+        btnSave.setDisable(true);
+        btnDelete.setDisable(true);
+
         loadQuarantineCenters();
+
+        ObservableList districts = cmbDistricts.getItems();
+        districts.addAll("Northern-Jaffna","Northern-Kilinochchi","Northern-Mannar","Northern-Mullaitivu","Northern-Vavuniya",
+                "NorthWestern-Kurunegala","NorthWestern-Puttalam",
+                "NorthCentral-Anuradhapura","NorthCentral-Polonnaruwa",
+                "Central-Kandy","Central-Matale","Central-Nuwara Eliya",
+                "Western-Colombo","Western-Gampaha","Western-Kalutara",
+                "Southern-Galle","Southern-Matara","Southern-Hambantota",
+                "Sabaragamuwa-Kegalle","Sabaragamuwa-Ratnapura",
+                "Eastern-Trincomalee","Eastern-Batticaloa","Eastern-Ampara",
+                "Uva-Badulla","Uva-Monaragala");
+
+
 
         lstQuarantineCenters.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<QuarantineCentersTM>() {
             @Override
@@ -42,17 +61,127 @@ public class QuarantineCentresController {
                 if(selectedCenter==null){
                     return;
                 }
+                btnSave.setDisable(false);
+                btnDelete.setDisable(false);
+                btnSave.setText("Update");
+
+                txtID.setText(selectedCenter.getId());
+                txtName.setText(selectedCenter.getName());
+                txtCapacity.setText(selectedCenter.getCapacity());
+                txtCity.setText(selectedCenter.getCity());
+                txtHead.setText(selectedCenter.getHead());
+                txtHeadContact.setText(selectedCenter.getHeadContact());
+                cmbDistricts.getSelectionModel().select(selectedCenter.getDistrict());
+                txtTel1.setText(selectedCenter.getTel1());
+                txtTel2.setText(selectedCenter.getTel2());
+
             }
         });
     }
 
+    @SuppressWarnings("Duplicates")
     public void btnQuarantineCenter_OnAction(ActionEvent actionEvent) {
+        //initializing the buttons and the text fields right after the Add Hospital Button is clicked
+        btnDelete.setDisable(true);
+        btnSave.setDisable(false);
+        txtName.clear();
+        txtCapacity.clear();
+        txtCity.clear();
+        txtHead.clear();
+        txtHeadContact.clear();
+        txtTel1.clear();
+        txtTel2.clear();
+        cmbDistricts.getSelectionModel().clearSelection();
+
+
+        //ID auto increment
+        IdAutoIncrement();
     }
 
+    @SuppressWarnings("Duplicates")
     public void btnSave_OnAction(ActionEvent actionEvent) {
+        btnSave.setDisable(true);
+        btnDelete.setDisable(true);
+
+        String id = txtID.getText();
+        String name = txtName.getText();
+        String city = txtCity.getText();
+        String district = cmbDistricts.getSelectionModel().getSelectedItem().toString();
+        String capacity = txtCapacity.getText();
+        String head = txtHead.getText();
+        String headContact = txtHeadContact.getText();
+        String tel1 = txtTel1.getText();
+        String tel2 = txtTel2.getText();
+
+        if(btnSave.getText().equals("Update")){
+            try {
+                PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("UPDATE qurantineCenter SET name=?,city=?,district=?,head=?,headContactNo=?,tel1=?,tel2=?,capacity=? WHERE id='" + txtID.getText() + "'");
+                pst.setObject(1,name);
+                pst.setObject(2,city);
+                pst.setObject(3,district);
+                pst.setObject(4,head);
+                pst.setObject(5,headContact);
+                pst.setObject(6,tel1);
+                pst.setObject(7,tel2);
+                pst.setObject(8,capacity);
+
+
+                int affectedRows = pst.executeUpdate();
+                if(affectedRows<0){
+                    new Alert(Alert.AlertType.ERROR,"Failed to update quarantine center details", ButtonType.OK).show();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+        else{
+            try {
+                PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO qurantineCenter VALUES(?,?,?,?,?,?,?,?,?)");
+                pst.setObject(1,id);
+                pst.setObject(2,name);
+                pst.setObject(3,city);
+                pst.setObject(4,district);
+                pst.setObject(5,head);
+                pst.setObject(6,headContact);
+                pst.setObject(7,tel1);
+                pst.setObject(8,tel2);
+                pst.setObject(9,capacity);
+
+
+                int affectedRows = pst.executeUpdate();
+
+                if(affectedRows<0){
+                    new Alert(Alert.AlertType.ERROR,"Failed to add quarantine center details", ButtonType.OK).show();
+                }
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        loadQuarantineCenters();
+
     }
 
     public void btnDelete_OnAction(ActionEvent actionEvent) {
+        btnSave.setDisable(true);
+        btnDelete.setDisable(true);
+
+        String id = txtID.getText();
+
+        try {
+            PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("DELETE FROM qurantineCenter WHERE id='" + id + "'");
+            int affectedRows = pst.executeUpdate();
+
+            if(affectedRows<0){
+                new Alert(Alert.AlertType.ERROR,"Failed to delete quarantine center details", ButtonType.OK).show();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        loadQuarantineCenters();
     }
 
     @SuppressWarnings("Duplicates")
@@ -81,6 +210,42 @@ public class QuarantineCentresController {
 
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void IdAutoIncrement(){
+
+        try {
+            Statement stm = DBConnection.getInstance().getConnection().createStatement();
+            ResultSet rst = stm.executeQuery("SELECT id FROM qurantineCenter ORDER BY id DESC LIMIT 1");
+
+            while(rst.next()){
+                String id = rst.getString(1);
+
+                if(id==null){
+                    txtID.setText("Q001");
+                }
+                else {
+                    String val = id.substring(1, 4);
+                    int value = Integer.parseInt(val);
+
+                    if (value < 10) {
+                        value += 1;
+                        txtID.setText("Q00"+value);
+                    }
+                    else if(value<100){
+                        value +=1;
+                        txtID.setText("Q0"+value);
+                    }
+                    else{
+                        value+=1;
+                        txtID.setText("Q"+value);
+                    }
+
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
