@@ -7,13 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.Date;
 
 public class GlobalController {
 
@@ -33,6 +31,7 @@ public class GlobalController {
 
         LocalDate today = LocalDate.now();
         txtDate.setText(today.toString());
+
     }
 
     public void btnUpdate_OnAction(ActionEvent actionEvent) {
@@ -62,6 +61,8 @@ public class GlobalController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        loadGlobalData();
     }
 
 

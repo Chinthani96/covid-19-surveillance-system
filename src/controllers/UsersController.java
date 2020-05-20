@@ -60,7 +60,6 @@ public class UsersController {
                 btnSave.setDisable(false);
                 btnDelete.setDisable(false);
                 btnSave.setText("Update");
-
                 txtName.setText(selectedUser.getName());
                 txtUsername.setText(selectedUser.getUsername());
                 txtEmail.setText(selectedUser.getEmail());
@@ -96,7 +95,6 @@ public class UsersController {
                                               cmbHospitals.getSelectionModel().select(hospital);
                                           }
                                      }
-
                                  }
 
                              } catch (SQLException e) {
@@ -140,6 +138,21 @@ public class UsersController {
             }
         });
 
+        cmbUserRole.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String selectedRole) {
+                if(selectedRole.equals("Hospital IT")){
+                    cmbHospitals.setVisible(true);
+                    cmbQuarantineCenters.setVisible(false);
+                    loadHospitals();
+                }
+                else if(selectedRole.equals("Quarantine Center IT")){
+                    cmbQuarantineCenters.setVisible(true);
+                    cmbHospitals.setVisible(false);
+                    loadQuarantineCenters();
+                }
+            }
+        });
 
         txtSearchUser.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -181,28 +194,25 @@ public class UsersController {
         String username = txtUsername.getText();
         String contact = txtTel.getText();
         String password = txtPassword.getText();
-        String role = cmbUserRole.getPromptText();
+        String role = cmbUserRole.getSelectionModel().getSelectedItem();
+        String id;
+
+        if(role.equals("Hospital IT")) {
+            HospitalsTM selectedHospital = cmbHospitals.getSelectionModel().getSelectedItem();
+            id = selectedHospital.getId();
+        }
+        else {
+            QuarantineCentersTM selectedCenter = cmbQuarantineCenters.getSelectionModel().getSelectedItem();
+            id = selectedCenter.getId();
+        }
 
 
         if(btnSave.getText().equals("Update")){
-            if(cmbUserRole.getSelectionModel().equals("Hospital IT")){
-
-
-            }
-            else if(cmbUserRole.getSelectionModel().equals("Quarantine Center IT")){
-
-            }
-            else{
+            if(role.equals("Hospital IT")){
                 try {
-                    PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("UPDATE user SET username=?, password=?, `name`=?, contact_no=? ,email=? ,role=? WHERE name='" + name + "'");
-                    pst.setObject(1,username);
-                    pst.setObject(2,password);
-                    pst.setObject(3,name);
-                    pst.setObject(4,contact);
-                    pst.setObject(5,email);
-                    pst.setObject(6,role);
+                    PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("UPDATE user_hospital SET hospital_id=? WHERE username='" + username + "'");
+                    pst.setObject(1,id);
                     int affectedRows = pst.executeUpdate();
-
 
                     if(affectedRows<0){
                         new Alert(Alert.AlertType.ERROR,"Failed to update entry", ButtonType.OK).show();
@@ -213,30 +223,77 @@ public class UsersController {
                 }
 
             }
-        }
-        else{
-            if(cmbUserRole.getSelectionModel().equals("Hospital IT")){
 
-
-            }
-            else if(cmbUserRole.getSelectionModel().equals("Quarantine Center IT")){
-
-            }
-
-            else{
+            if(role.equals("Quarantine Center IT")){
                 try {
-                    PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO user VALUES(?,?,?,?,?,?)");
-                    pst.setObject(1,username);
-                    pst.setObject(2,password);
-                    pst.setObject(3,name);
-                    pst.setObject(4,contact);
-                    pst.setObject(5,email);
-                    pst.setObject(6,role);
+                    PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("UPDATE user_qurantineCenter SET quarantineCenter_id=? WHERE username='" + username + "'");
+                    pst.setObject(1,id);
                     int affectedRows = pst.executeUpdate();
 
+                    if(affectedRows<0){
+                        new Alert(Alert.AlertType.ERROR,"Failed to update entry", ButtonType.OK).show();
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
+            try {
+                PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("UPDATE user SET username=?, password=?, `name`=?, contact_no=? ,email=? ,role=? WHERE name='" + name + "'");
+                pst.setObject(1,username);
+                pst.setObject(2,password);
+                pst.setObject(3,name);
+                pst.setObject(4,contact);
+                pst.setObject(5,email);
+                pst.setObject(6,role);
+                int affectedRows = pst.executeUpdate();
+
+
+                if(affectedRows<0){
+                    new Alert(Alert.AlertType.ERROR,"Failed to update entry", ButtonType.OK).show();
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+        else{
+            try {
+                PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO user VALUES(?,?,?,?,?,?)");
+                pst.setObject(1,username);
+                pst.setObject(2,password);
+                pst.setObject(3,name);
+                pst.setObject(4,contact);
+                pst.setObject(5,email);
+                pst.setObject(6,role);
+                int affectedRows = pst.executeUpdate();
+
+
+                if(affectedRows<0){
+                    new Alert(Alert.AlertType.ERROR,"Failed to add entry", ButtonType.OK).show();
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            if(role.equals("Hospital IT")){
+                try {
+                    PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO user_hospital VALUES(?,?)");
+                    pst.setObject(1,username);
+                    pst.setObject(2,id);
+                    int affectedRows = pst.executeUpdate();
 
                     if(affectedRows<0){
                         new Alert(Alert.AlertType.ERROR,"Failed to add entry", ButtonType.OK).show();
+                    }
+                    else{
+                        System.out.println("Successful");
                     }
 
                 } catch (SQLException e) {
@@ -245,14 +302,87 @@ public class UsersController {
 
             }
 
+            if(role.equals("Quarantine Center IT")){
+                try {
+                    PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO user_qurantineCenter VALUES(?,?)");
+                    pst.setObject(1,username);
+                    pst.setObject(2,id);
+                    int affectedRows = pst.executeUpdate();
+
+
+                    if(affectedRows<0){
+                        new Alert(Alert.AlertType.ERROR,"Failed to add entry", ButtonType.OK).show();
+                    }
+                    else{
+                        System.out.println("Successful");
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+
         loadUsers();
 
     }
 
+    @SuppressWarnings("Duplicates")
     public void btnDelete_OnAction(ActionEvent actionEvent) {
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+
+        String role = cmbUserRole.getSelectionModel().getSelectedItem();
+
+        if(role.equals("Hospital IT")){
+            try {
+                PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("DELETE FROM user_hospital WHERE username='" + txtUsername.getText() + "'");
+                int affectedRows = pst.executeUpdate();
+
+                if(affectedRows<0){
+                    new Alert(Alert.AlertType.ERROR,"Failed to add entry", ButtonType.OK).show();
+                }
+                else{
+                    System.out.println("Delete Successful");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        if(role.equals("Quarantine Center IT")){
+            try {
+                PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("DELETE FROM user_qurantineCenter WHERE username='" + txtUsername.getText() + "'");
+                int affectedRows = pst.executeUpdate();
+
+                if(affectedRows<0){
+                    new Alert(Alert.AlertType.ERROR,"Failed to add entry", ButtonType.OK).show();
+                }
+                else{
+                    System.out.println("Delete Successful");
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("DELETE FROM user WHERE username='" + txtUsername.getText() + "'");
+            int affectedRows = pst.executeUpdate();
+
+            if(affectedRows<0){
+                new Alert(Alert.AlertType.ERROR,"Failed to add entry", ButtonType.OK).show();
+            }
+            else{
+                System.out.println("Delete Successful");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    loadUsers();
+
     }
 
     @SuppressWarnings("Duplicates")
