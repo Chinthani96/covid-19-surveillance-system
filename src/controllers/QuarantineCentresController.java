@@ -18,10 +18,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class QuarantineCentresController {
     public JFXListView<QuarantineCentersTM> lstQuarantineCenters;
-    public TextField txtSearchHospital;
+    public TextField txtSearch;
     public JFXButton btnQuarantineCenter;
     public JFXTextField txtName;
     public JFXTextField txtID;
@@ -34,6 +35,8 @@ public class QuarantineCentresController {
     public JFXTextField txtTel2;
     public JFXButton btnSave;
     public JFXButton btnDelete;
+
+    ArrayList<QuarantineCentersTM> centers = new ArrayList<>();
 
     @SuppressWarnings("Duplicates")
     public void initialize(){
@@ -75,6 +78,20 @@ public class QuarantineCentresController {
                 txtTel1.setText(selectedCenter.getTel1());
                 txtTel2.setText(selectedCenter.getTel2());
 
+            }
+        });
+
+        txtSearch.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                ObservableList<QuarantineCentersTM> quarantineCenters = lstQuarantineCenters.getItems();
+                quarantineCenters.clear();
+
+                for (QuarantineCentersTM center : centers){
+                    if(center.getName().contains(newValue)){
+                        quarantineCenters.add(center);
+                    }
+                }
             }
         });
     }
@@ -206,7 +223,7 @@ public class QuarantineCentresController {
                 String capacity = rst.getString(9);
 
             quarantineCenters.add(new QuarantineCentersTM(id, name, city, district, head, headContact, tel1, tel2, capacity));
-
+            centers.add(new QuarantineCentersTM(id, name, city, district, head, headContact, tel1, tel2, capacity));
 
             }
 

@@ -20,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class UsersController {
     public JFXListView<UserTM> lstUsers;
@@ -33,9 +34,10 @@ public class UsersController {
     public JFXButton btnDelete;
     public JFXTextField txtPassword;
     public JFXComboBox<String> cmbUserRole;
-//    public JFXComboBox cmbUserLocation;
     public JFXComboBox<HospitalsTM> cmbHospitals;
     public JFXComboBox<QuarantineCentersTM> cmbQuarantineCenters;
+
+    ArrayList<UserTM> usersList = new ArrayList<>();
 
     public void initialize(){
 
@@ -139,6 +141,19 @@ public class UsersController {
         });
 
 
+        txtSearchUser.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                ObservableList<UserTM> users = lstUsers.getItems();
+                users.clear();
+
+                for (UserTM user: usersList){
+                    if(user.getName().contains(newValue)||user.getUsername().contains(newValue)){
+                        users.add(user);
+                    }
+                }
+            }
+        });
     }
 
     @SuppressWarnings("Duplicates")
@@ -207,6 +222,7 @@ public class UsersController {
             else if(cmbUserRole.getSelectionModel().equals("Quarantine Center IT")){
 
             }
+
             else{
                 try {
                     PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO user VALUES(?,?,?,?,?,?)");
@@ -240,7 +256,7 @@ public class UsersController {
     }
 
     @SuppressWarnings("Duplicates")
-    public void loadUsers(){
+    private void loadUsers(){
         try {
             Statement stm = DBConnection.getInstance().getConnection().createStatement();
             ResultSet rst = stm.executeQuery("SELECT * FROM user");
@@ -256,8 +272,8 @@ public class UsersController {
                 String email = rst.getString(5);
                 String role = rst.getString(6);
 
-
                 users.add(new UserTM(username,password,name,contact,email,role));
+                usersList.add(new UserTM(username,password,name,contact,email,role));
             }
 
         } catch (SQLException e) {
@@ -266,7 +282,7 @@ public class UsersController {
     }
 
     @SuppressWarnings("Duplicates")
-    public void loadHospitals(){
+    private void loadHospitals(){
         try {
             Statement stm = DBConnection.getInstance().getConnection().createStatement();
             ResultSet rst = stm.executeQuery("SELECT * FROM hospital");
@@ -297,7 +313,7 @@ public class UsersController {
     }
 
     @SuppressWarnings("Duplicates")
-    public void loadQuarantineCenters(){
+    private void loadQuarantineCenters(){
         try {
 
             ObservableList<QuarantineCentersTM> quarantineCenters = cmbQuarantineCenters.getItems();

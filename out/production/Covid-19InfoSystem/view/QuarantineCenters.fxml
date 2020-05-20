@@ -20,7 +20,7 @@
          </font></Label>
       <Line endX="548.0" layoutX="126.0" layoutY="88.0" startX="-100.0" />
       <JFXListView fx:id="lstQuarantineCenters" layoutX="26.0" layoutY="155.0" prefHeight="166.0" prefWidth="648.0" />
-      <TextField fx:id="txtSearchHospital" layoutX="26.0" layoutY="124.0" prefHeight="31.0" prefWidth="649.0" promptText="Search Quarantine Centers" />
+      <TextField fx:id="txtSearch" layoutX="26.0" layoutY="124.0" prefHeight="31.0" prefWidth="649.0" promptText="Search Quarantine Centers" />
       <JFXButton fx:id="btnQuarantineCenter" layoutX="27.0" layoutY="325.0" onAction="#btnQuarantineCenter_OnAction" prefHeight="24.0" prefWidth="647.0" style="-fx-background-color: black;" text="Add Quarantine Center" textFill="#f2e8e8" />
       <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="262.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
          <image>

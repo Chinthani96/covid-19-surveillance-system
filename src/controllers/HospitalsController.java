@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class HospitalsController {
     public JFXListView<HospitalsTM> lstHospitals;
@@ -25,7 +26,7 @@ public class HospitalsController {
     public JFXButton btnAddHospital;
     public JFXTextField txtName;
     public JFXTextField txtID;
-    public JFXComboBox cmbDistricts;
+    public JFXComboBox<String> cmbDistricts;
     public JFXTextField txtCity;
     public JFXTextField txtCapacity;
     public JFXTextField txtDirector;
@@ -36,6 +37,8 @@ public class HospitalsController {
     public JFXTextField txtEmail;
     public JFXButton btnSave;
     public JFXButton btnDelete;
+
+    ArrayList<HospitalsTM> hospitalsList = new ArrayList<>();
 
     @SuppressWarnings("Duplicates")
     public void initialize(){
@@ -78,6 +81,20 @@ public class HospitalsController {
                 txtFax.setText(selectedHospital.getFax());
                 txtEmail.setText(selectedHospital.getEmail());
                 cmbDistricts.getSelectionModel().select(selectedHospital.getDistrict());
+            }
+        });
+
+        txtSearchHospital.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                ObservableList<HospitalsTM> hospitals = lstHospitals.getItems();
+                hospitals.clear();
+
+                for (HospitalsTM hospital:hospitalsList){
+                    if(hospital.getName().contains(newValue)){
+                        hospitals.add(hospital);
+                    }
+                }
             }
         });
     }
@@ -215,6 +232,7 @@ public class HospitalsController {
                 String email = rst.getString(11);
 
                 hospitals.add(new HospitalsTM(id,name,city,district,capacity,director,directorContact,tel1,tel2,fax,email));
+                hospitalsList.add(new HospitalsTM(id,name,city,district,capacity,director,directorContact,tel1,tel2,fax,email));
 
             }
 
