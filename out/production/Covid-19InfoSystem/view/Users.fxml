@@ -29,15 +29,16 @@
       </ImageView>
       <AnchorPane fx:id="ancpnUserDetails" layoutX="28.0" layoutY="367.0" prefHeight="405.0" prefWidth="644.0" style="-fx-background-color: white;">
          <children>
-            <JFXTextField fx:id="txtName" layoutX="44.0" layoutY="26.0" prefHeight="27.0" prefWidth="337.0" promptText="Name" />
-            <JFXTextField fx:id="txtID" editable="false" layoutX="471.0" layoutY="26.0" prefHeight="17.0" prefWidth="123.0" promptText="ID" />
-            <JFXTextField fx:id="txtEmail" layoutX="45.0" layoutY="119.0" prefHeight="27.0" prefWidth="335.0" promptText="Email" />
-            <JFXTextField fx:id="txtTel" layoutX="44.0" layoutY="76.0" prefHeight="27.0" prefWidth="127.0" promptText="Contact Number" />
-            <JFXTextField fx:id="txtxUsername" layoutX="45.0" layoutY="171.0" prefHeight="27.0" prefWidth="336.0" promptText="Username" />
+            <JFXTextField fx:id="txtName" layoutX="44.0" layoutY="26.0" prefHeight="31.0" prefWidth="555.0" promptText="Name" />
+            <JFXTextField fx:id="txtEmail" layoutX="46.0" layoutY="70.0" prefHeight="27.0" prefWidth="335.0" promptText="Email" />
+            <JFXTextField fx:id="txtTel" layoutX="469.0" layoutY="70.0" prefHeight="27.0" prefWidth="127.0" promptText="Contact Number" />
+            <JFXTextField fx:id="txtUsername" layoutX="45.0" layoutY="121.0" prefHeight="27.0" prefWidth="336.0" promptText="Username" />
             <JFXButton fx:id="btnSave" layoutX="225.0" layoutY="354.0" onAction="#btnSave_OnAction" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="Save" textFill="#f2e9e9" />
             <JFXButton fx:id="btnDelete" layoutX="341.0" layoutY="354.0" onAction="#btnDelete_OnAction" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="Delete" textFill="#f5eaea" />
-            <JFXTextField fx:id="txtPassword" layoutX="45.0" layoutY="221.0" prefHeight="27.0" prefWidth="336.0" promptText="Password" />
-            <JFXComboBox fx:id="cmbUserRole" layoutX="45.0" layoutY="276.0" prefHeight="27.0" prefWidth="555.0" promptText="User Role" />
+            <JFXTextField fx:id="txtPassword" layoutX="45.0" layoutY="176.0" prefHeight="27.0" prefWidth="336.0" promptText="Password" />
+            <JFXComboBox fx:id="cmbUserRole" layoutX="45.0" layoutY="230.0" prefHeight="27.0" prefWidth="555.0" promptText="User Role" />
+            <JFXComboBox fx:id="cmbHospitals" layoutX="44.0" layoutY="279.0" prefHeight="21.0" prefWidth="555.0" promptText="User Location" />
+            <JFXComboBox fx:id="cmbQuarantineCenters" layoutX="45.0" layoutY="279.0" prefHeight="21.0" prefWidth="555.0" promptText="User Location" />
          </children>
       </AnchorPane>
    </children>

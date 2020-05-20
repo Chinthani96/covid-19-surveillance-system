@@ -25,7 +25,7 @@ public class QuarantineCentresController {
     public JFXButton btnQuarantineCenter;
     public JFXTextField txtName;
     public JFXTextField txtID;
-    public JFXComboBox cmbDistricts;
+    public JFXComboBox<String> cmbDistricts;
     public JFXTextField txtCity;
     public JFXTextField txtCapacity;
     public JFXTextField txtHead;
