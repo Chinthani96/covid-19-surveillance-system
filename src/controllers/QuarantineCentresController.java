@@ -98,18 +98,11 @@ public class QuarantineCentresController {
 
     @SuppressWarnings("Duplicates")
     public void btnQuarantineCenter_OnAction(ActionEvent actionEvent) {
-        //initializing the buttons and the text fields right after the Add Hospital Button is clicked
+
         btnDelete.setDisable(true);
         btnSave.setDisable(false);
-        txtName.clear();
-        txtCapacity.clear();
-        txtCity.clear();
-        txtHead.clear();
-        txtHeadContact.clear();
-        txtTel1.clear();
-        txtTel2.clear();
-        cmbDistricts.getSelectionModel().clearSelection();
 
+        clearTextFields();
 
         //ID auto increment
         IdAutoIncrement();
@@ -119,16 +112,31 @@ public class QuarantineCentresController {
     public void btnSave_OnAction(ActionEvent actionEvent) {
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+        btnSave.setText("Save");
+        clearTextFields();
 
         String id = txtID.getText();
         String name = txtName.getText();
         String city = txtCity.getText();
-        String district = cmbDistricts.getSelectionModel().getSelectedItem().toString();
+        String district = cmbDistricts.getSelectionModel().getSelectedItem();
         String capacity = txtCapacity.getText();
         String head = txtHead.getText();
         String headContact = txtHeadContact.getText();
         String tel1 = txtTel1.getText();
         String tel2 = txtTel2.getText();
+
+        if(id.trim().length()==0 ||
+                name.trim().length()==0 ||
+                city.trim().length()==0 ||
+                district.trim().length()==0 ||
+                capacity.trim().length()==0 ||
+                tel1.trim().length()==0 ||
+                tel2.trim().length()==0 ||
+                head.trim().length() ==0 ||
+                headContact.trim().length() ==0
+        ){
+            new Alert(Alert.AlertType.ERROR,"The fields cannot be empty. Please fill all fields",ButtonType.OK).show();
+        }
 
         if(btnSave.getText().equals("Update")){
             try {
@@ -184,6 +192,8 @@ public class QuarantineCentresController {
     public void btnDelete_OnAction(ActionEvent actionEvent) {
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+        btnSave.setText("Save");
+        clearTextFields();
 
         String id = txtID.getText();
 
@@ -266,5 +276,17 @@ public class QuarantineCentresController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @SuppressWarnings("Duplicates")
+    private void clearTextFields(){
+        txtName.clear();
+        txtCapacity.clear();
+        txtCity.clear();
+        txtHead.clear();
+        txtHeadContact.clear();
+        txtTel1.clear();
+        txtTel2.clear();
+        cmbDistricts.getSelectionModel().clearSelection();
     }
 }

@@ -42,7 +42,7 @@
       <Line endX="561.0" layoutX="119.0" layoutY="88.0" startX="-100.0" />
       <Label layoutX="19.0" layoutY="39.0" prefHeight="39.0" prefWidth="225.0" text="Global">
          <font>
-            <Font name="Charter Bold" size="18.0" />
+            <Font name="Courier" size="24.0" />
          </font>
       </Label>
       <AnchorPane layoutX="45.0" layoutY="280.0" prefHeight="51.0" prefWidth="627.0" style="-fx-background-color: white;">

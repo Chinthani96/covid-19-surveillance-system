@@ -171,23 +171,23 @@ public class UsersController {
 
     @SuppressWarnings("Duplicates")
     public void btnAddUser_OnAction(ActionEvent actionEvent) {
+        btnSave.setText("Save");
         btnDelete.setDisable(true);
         btnSave.setDisable(false);
+        cmbQuarantineCenters.setVisible(false);
+        cmbHospitals.setVisible(false);
 
-        txtName.clear();
-        txtEmail.clear();
-        txtPassword.clear();
-        txtTel.clear();
-        txtUsername.clear();
-        cmbUserRole.getSelectionModel().clearSelection();
+        clearTextFields();
         loadUsers();
 
     }
 
     @SuppressWarnings("Duplicates")
     public void btnSave_OnAction(ActionEvent actionEvent) {
+        btnSave.setText("Save");
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+        clearTextFields();
 
         String name = txtName.getText();
         String email = txtEmail.getText();
@@ -196,6 +196,16 @@ public class UsersController {
         String password = txtPassword.getText();
         String role = cmbUserRole.getSelectionModel().getSelectedItem();
         String id;
+
+        if(name.trim().length()==0 ||
+                email.trim().length()==0 ||
+                username.trim().length()==0 ||
+                contact.trim().length()==0 ||
+                password.trim().length()==0 ||
+                role.trim().length()==0
+        ){
+            new Alert(Alert.AlertType.ERROR,"The fields cannot be empty. Please fill all fields",ButtonType.OK).show();
+        }
 
         if(role.equals("Hospital IT")) {
             HospitalsTM selectedHospital = cmbHospitals.getSelectionModel().getSelectedItem();
@@ -331,6 +341,9 @@ public class UsersController {
     public void btnDelete_OnAction(ActionEvent actionEvent) {
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+        btnSave.setText("Update");
+        clearTextFields();
+
 
         String role = cmbUserRole.getSelectionModel().getSelectedItem();
 
@@ -465,11 +478,19 @@ public class UsersController {
 
                 quarantineCenters.add(new QuarantineCentersTM(id, name, city, district, head, headContact, tel1, tel2, capacity));
 
-
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void clearTextFields(){
+        txtName.clear();
+        txtEmail.clear();
+        txtPassword.clear();
+        txtTel.clear();
+        txtUsername.clear();
+        cmbUserRole.getSelectionModel().clearSelection();
     }
 }

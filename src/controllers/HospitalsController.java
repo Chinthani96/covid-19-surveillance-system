@@ -104,16 +104,9 @@ public class HospitalsController {
         //initializing the buttons and the text fields right after the Add Hospital Button is clicked
         btnDelete.setDisable(true);
         btnSave.setDisable(false);
-        txtName.clear();
-        txtCapacity.clear();
-        txtCity.clear();
-        txtDirector.clear();
-        txtDirectorContact.clear();
-        txtFax.clear();
-        txtTel1.clear();
-        txtTel2.clear();
-        cmbDistricts.getSelectionModel().clearSelection();
-        txtEmail.clear();
+        btnSave.setText("Save");
+
+        clearTextFields();
 
         //ID auto increment
         IdAutoIncrement();
@@ -124,18 +117,35 @@ public class HospitalsController {
     public void btnSave_OnAction(ActionEvent actionEvent) {
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+        btnSave.setText("Save");
+        clearTextFields();
 
         String id = txtID.getText();
         String name = txtName.getText();
         String city = txtCity.getText();
-        String district = cmbDistricts.getSelectionModel().getSelectedItem().toString();
-        String capacity = txtCapacity.getText();
+        String district = cmbDistricts.getSelectionModel().getSelectedItem();
+        String capacityString = txtCapacity.getText();
+        int capacity = Integer.parseInt(capacityString);
         String director = txtDirector.getText();
         String directorContact = txtDirectorContact.getText();
         String tel1 = txtTel1.getText();
         String tel2 = txtTel2.getText();
         String fax = txtFax.getText();
         String email = txtEmail.getText();
+
+        if(id.trim().length()==0 ||
+                name.trim().length()==0 ||
+                city.trim().length()==0 ||
+                capacityString.trim().length()==0 ||
+                director.trim().length()==0 ||
+                directorContact.trim().length()==0 ||
+                tel1.trim().length()==0 ||
+                tel2.trim().length()==0 ||
+                fax.trim().length() ==0 ||
+                email.trim().length() ==0
+        ){
+            new Alert(Alert.AlertType.ERROR,"The fields cannot be empty. Please fill all fields",ButtonType.OK).show();
+        }
 
         if(btnSave.getText().equals("Update")){
             try {
@@ -192,6 +202,8 @@ public class HospitalsController {
     public void btnDelete_OnAction(ActionEvent actionEvent) {
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+        btnSave.setText("Save");
+        clearTextFields();
 
         String id = txtID.getText();
 
@@ -275,5 +287,18 @@ public class HospitalsController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private void clearTextFields(){
+        txtName.clear();
+        txtCapacity.clear();
+        txtCity.clear();
+        txtDirector.clear();
+        txtDirectorContact.clear();
+        txtFax.clear();
+        txtTel1.clear();
+        txtTel2.clear();
+        cmbDistricts.getSelectionModel().clearSelection();
+        txtEmail.clear();
     }
 }
