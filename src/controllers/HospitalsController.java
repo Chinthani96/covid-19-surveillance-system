@@ -46,6 +46,17 @@ public class HospitalsController {
         //basic initializations
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+        txtName.setDisable(true);
+        txtID.setDisable(true);
+        txtCapacity.setDisable(true);
+        txtCity.setDisable(true);
+        txtDirector.setDisable(true);
+        txtDirectorContact.setDisable(true);
+        txtEmail.setDisable(true);
+        txtFax.setDisable(true);
+        txtTel1.setDisable(true);
+        txtTel2.setDisable(true);
+        cmbDistricts.setDisable(true);
 
         loadHospitals();
 
@@ -105,6 +116,18 @@ public class HospitalsController {
         btnDelete.setDisable(true);
         btnSave.setDisable(false);
         btnSave.setText("Save");
+
+        txtName.setDisable(false);
+        txtID.setDisable(false);
+        txtCapacity.setDisable(false);
+        txtCity.setDisable(false);
+        txtDirector.setDisable(false);
+        txtDirectorContact.setDisable(false);
+        cmbDistricts.setDisable(false);
+        txtEmail.setDisable(false);
+        txtFax.setDisable(false);
+        txtTel1.setDisable(false);
+        txtTel2.setDisable(false);
 
         clearTextFields();
 

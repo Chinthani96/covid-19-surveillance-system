@@ -39,14 +39,25 @@ public class UsersController {
 
     ArrayList<UserTM> usersList = new ArrayList<>();
 
+    @SuppressWarnings("Duplicates")
     public void initialize(){
 
         cmbHospitals.setVisible(false);
         cmbQuarantineCenters.setVisible(false);
         loadUsers();
 
+        txtUsername.setDisable(true);
+        txtEmail.setDisable(true);
+        txtName.setDisable(true);
+        txtPassword.setDisable(true);
+        txtTel.setDisable(true);
+        cmbUserRole.setDisable(true);
+
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
+
+
+
 
         ObservableList userRoles = cmbUserRole.getItems();
         userRoles.addAll("Admin","PSTF","Hospital IT","Quarantine Center IT");
@@ -176,6 +187,13 @@ public class UsersController {
         btnSave.setDisable(false);
         cmbQuarantineCenters.setVisible(false);
         cmbHospitals.setVisible(false);
+
+        txtUsername.setDisable(false);
+        txtEmail.setDisable(false);
+        txtName.setDisable(false);
+        txtPassword.setDisable(false);
+        txtTel.setDisable(false);
+        cmbUserRole.setDisable(false);
 
         clearTextFields();
         loadUsers();

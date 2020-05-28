@@ -43,6 +43,16 @@ public class QuarantineCentresController {
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
 
+        txtName.setDisable(true);
+        txtID.setDisable(true);
+        txtCapacity.setDisable(true);
+        txtCity.setDisable(true);
+        txtHead.setDisable(true);
+        txtHeadContact.setDisable(true);
+        txtTel1.setDisable(true);
+        txtTel2.setDisable(true);
+        cmbDistricts.setDisable(true);
+
         loadQuarantineCenters();
 
         ObservableList districts = cmbDistricts.getItems();
@@ -101,6 +111,16 @@ public class QuarantineCentresController {
 
         btnDelete.setDisable(true);
         btnSave.setDisable(false);
+
+        txtName.setDisable(false);
+        txtID.setDisable(false);
+        txtCapacity.setDisable(false);
+        txtCity.setDisable(false);
+        txtHead.setDisable(false);
+        txtHeadContact.setDisable(false);
+        txtTel1.setDisable(false);
+        txtTel2.setDisable(false);
+        cmbDistricts.setDisable(false);
 
         clearTextFields();
 
@@ -163,9 +183,9 @@ public class QuarantineCentresController {
             return;
         }
 
-        if(!tel1.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$") ||
-            !tel2.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$") ||
-                !headContact.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
+        if(!tel1.matches("^[0-9]{1,3}[-][0-9]{1,7}$") ||
+            !tel2.matches("^[0-9]{1,3}[-][0-9]{1,7}$") ||
+                !headContact.matches("^[0-9]{1,3}[-][0-9]{1,7}$")
         ){
             new Alert(Alert.AlertType.ERROR,"Invalid contact number(s). Please check the format given and enter a valid number!",ButtonType.OK).show();
             return;

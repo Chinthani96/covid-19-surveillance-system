@@ -50,6 +50,7 @@ public class GlobalController {
 
         if(confirmedCases.trim().length()==0 || recoveries.trim().length()==0 || deaths.trim().length()==0 || date.trim().length()==0){
             new Alert(Alert.AlertType.ERROR, "The fields cannot be empty", ButtonType.OK).show();
+            return;
         }
 
         // TODO : VALIDATION IF SYMBOLS ARE TYPED.
@@ -58,6 +59,7 @@ public class GlobalController {
                 deaths.matches("^[a-zA-Z]*$")
         ){
             new Alert(Alert.AlertType.ERROR,"The fields, Confirmed Cases, Recovered Cases and Deaths should be numeric",ButtonType.OK).show();
+            return;
         }
 
 
