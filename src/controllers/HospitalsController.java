@@ -111,32 +111,30 @@ public class HospitalsController {
         //ID auto increment
         IdAutoIncrement();
 
+
     }
 
     @SuppressWarnings("Duplicates")
     public void btnSave_OnAction(ActionEvent actionEvent) {
-        btnSave.setDisable(true);
-        btnDelete.setDisable(true);
-        btnSave.setText("Save");
-        clearTextFields();
-
         String id = txtID.getText();
         String name = txtName.getText();
         String city = txtCity.getText();
         String district = cmbDistricts.getSelectionModel().getSelectedItem();
-        String capacityString = txtCapacity.getText();
-        int capacity = Integer.parseInt(capacityString);
+        String capacity = txtCapacity.getText();
         String director = txtDirector.getText();
         String directorContact = txtDirectorContact.getText();
         String tel1 = txtTel1.getText();
         String tel2 = txtTel2.getText();
         String fax = txtFax.getText();
         String email = txtEmail.getText();
+//        int capacityInt = Integer.parseInt(capacity);
+
+        //-----------------------------------------------------------------------------VALIDATIONS----------------------------------------------------------------------------------------------------------------------------------------------------------
 
         if(id.trim().length()==0 ||
                 name.trim().length()==0 ||
                 city.trim().length()==0 ||
-                capacityString.trim().length()==0 ||
+                capacity.trim().length()==0 ||
                 director.trim().length()==0 ||
                 directorContact.trim().length()==0 ||
                 tel1.trim().length()==0 ||
@@ -145,7 +143,45 @@ public class HospitalsController {
                 email.trim().length() ==0
         ){
             new Alert(Alert.AlertType.ERROR,"The fields cannot be empty. Please fill all fields",ButtonType.OK).show();
+            return;
         }
+
+        if(capacity.matches("^[a-zA-Z]*$")){
+            new Alert(Alert.AlertType.ERROR,"Please enter only numeric values to the field capacity",ButtonType.OK).show();
+            return;
+        }
+
+        if(tel1.trim().length()!=11 || tel2.trim().length()!=11 || directorContact.trim().length()!=11 || fax.trim().length()!=11){
+            int stringCount = tel1.length();
+            int diff=10-stringCount;
+
+            if (diff>0) {
+                new Alert(Alert.AlertType.ERROR,""+diff+" digit(s) missing from the number. Please enter a valid number!",ButtonType.OK).show();
+            }
+            else{
+                new Alert(Alert.AlertType.ERROR,"The contact number field has "+(-1*(diff))+" digit(s) more than the expected amount(10). Please enter a valid number!",ButtonType.OK).show();
+            }
+            return;
+        }
+
+
+        if (!tel1.matches("^[0-9]{1,3}[-][0-9]{1,7}$") ||
+                !tel2.matches("^[0-9]{1,3}[-][0-9]{1,7}$") ||
+                !directorContact.matches("^[0-9]{1,3}[-][0-9]{1,7}$") ||
+                !fax.matches("^[0-9]{1,3}[-][0-9]{1,7}$")
+        ) {
+            new Alert(Alert.AlertType.ERROR,"Invalid contact number/fax number. Please check the format given and enter a valid number!",ButtonType.OK).show();
+            return;
+        }
+
+        if (!email.matches("^[a-z0-9_.]{1,}[@][a-z.]{1,}[a-z]{1,}$")) {
+            new Alert(Alert.AlertType.ERROR,"Invalid email. Please enter a valid email address",ButtonType.OK).show();
+            return;
+        }
+
+        int capacityInt = Integer.parseInt(capacity);
+
+//        ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
         if(btnSave.getText().equals("Update")){
             try {
@@ -153,7 +189,7 @@ public class HospitalsController {
                 pst.setObject(1,name);
                 pst.setObject(2,city);
                 pst.setObject(3,district);
-                pst.setObject(4,capacity);
+                pst.setObject(4,capacityInt);
                 pst.setObject(5,director);
                 pst.setObject(6,directorContact);
                 pst.setObject(7,tel1);
@@ -177,7 +213,7 @@ public class HospitalsController {
                 pst.setObject(2,name);
                 pst.setObject(3,city);
                 pst.setObject(4,district);
-                pst.setObject(5,capacity);
+                pst.setObject(5,capacityInt);
                 pst.setObject(6,director);
                 pst.setObject(7,directorContact);
                 pst.setObject(8,tel1);
@@ -197,6 +233,10 @@ public class HospitalsController {
             }
         }
         loadHospitals();
+        btnSave.setDisable(true);
+        btnDelete.setDisable(true);
+        btnSave.setText("Save");
+        clearTextFields();
     }
 
     public void btnDelete_OnAction(ActionEvent actionEvent) {
@@ -289,6 +329,7 @@ public class HospitalsController {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     private void clearTextFields(){
         txtName.clear();
         txtCapacity.clear();

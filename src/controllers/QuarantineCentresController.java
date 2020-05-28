@@ -110,11 +110,6 @@ public class QuarantineCentresController {
 
     @SuppressWarnings("Duplicates")
     public void btnSave_OnAction(ActionEvent actionEvent) {
-        btnSave.setDisable(true);
-        btnDelete.setDisable(true);
-        btnSave.setText("Save");
-        clearTextFields();
-
         String id = txtID.getText();
         String name = txtName.getText();
         String city = txtCity.getText();
@@ -125,7 +120,10 @@ public class QuarantineCentresController {
         String tel1 = txtTel1.getText();
         String tel2 = txtTel2.getText();
 
-        if(id.trim().length()==0 ||
+        //-----------------------------------------------------------------------------VALIDATIONS----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+        if(
+                id.trim().length() ==0 ||
                 name.trim().length()==0 ||
                 city.trim().length()==0 ||
                 district.trim().length()==0 ||
@@ -135,8 +133,48 @@ public class QuarantineCentresController {
                 head.trim().length() ==0 ||
                 headContact.trim().length() ==0
         ){
+            System.out.println(name.trim().length());
+            System.out.println(city.trim().length());
+            System.out.println(district.trim().length());
+            System.out.println(capacity.trim().length());
+            System.out.println(tel1.trim().length());
+            System.out.println(tel2.trim().length());
+            System.out.println(head.trim().length());
+            System.out.println(headContact.trim().length());
             new Alert(Alert.AlertType.ERROR,"The fields cannot be empty. Please fill all fields",ButtonType.OK).show();
+            return;
         }
+
+        if(capacity.matches("^[a-zA-Z]$")){
+            new Alert(Alert.AlertType.ERROR,"Capacity field should have a numeric value. Please enter valid value!",ButtonType.OK).show();
+            return;
+        }
+
+        if(tel1.trim().length()!=11 || tel2.trim().length()!=11 || headContact.trim().length()!=11){
+            int stringCount = tel1.length();
+            int diff=10-stringCount;
+
+            if (diff>0) {
+                new Alert(Alert.AlertType.ERROR,""+diff+" digit(s) missing from the number. Please enter a valid number!",ButtonType.OK).show();
+            }
+            else{
+                new Alert(Alert.AlertType.ERROR,"The contact number field has "+(-1*(diff))+" digit(s) more than the expected amount(10). Please enter a valid number!",ButtonType.OK).show();
+            }
+            return;
+        }
+
+        if(!tel1.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$") ||
+            !tel2.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$") ||
+                !headContact.matches("^(\\+\\d{1,2}\\s)?\\(?\\d{3}\\)?[\\s.-]\\d{3}[\\s.-]\\d{4}$")
+        ){
+            new Alert(Alert.AlertType.ERROR,"Invalid contact number(s). Please check the format given and enter a valid number!",ButtonType.OK).show();
+            return;
+        }
+
+        //        ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+        int capacityInt = Integer.parseInt(capacity);
 
         if(btnSave.getText().equals("Update")){
             try {
@@ -148,7 +186,7 @@ public class QuarantineCentresController {
                 pst.setObject(5,headContact);
                 pst.setObject(6,tel1);
                 pst.setObject(7,tel2);
-                pst.setObject(8,capacity);
+                pst.setObject(8,capacityInt);
 
 
                 int affectedRows = pst.executeUpdate();
@@ -171,7 +209,7 @@ public class QuarantineCentresController {
                 pst.setObject(6,headContact);
                 pst.setObject(7,tel1);
                 pst.setObject(8,tel2);
-                pst.setObject(9,capacity);
+                pst.setObject(9,capacityInt);
 
 
                 int affectedRows = pst.executeUpdate();
@@ -186,6 +224,11 @@ public class QuarantineCentresController {
             }
         }
         loadQuarantineCenters();
+
+        btnSave.setDisable(true);
+        btnDelete.setDisable(true);
+        btnSave.setText("Save");
+        clearTextFields();
 
     }
 

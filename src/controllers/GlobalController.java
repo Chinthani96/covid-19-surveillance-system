@@ -46,6 +46,8 @@ public class GlobalController {
         String recoveries = txtRecoveredCases.getText();
         String deaths = txtDeaths.getText();
 
+        //-----------------------------------------------------------------------------VALIDATIONS----------------------------------------------------------------------------------------------------------------------------------------------------------
+
         if(confirmedCases.trim().length()==0 || recoveries.trim().length()==0 || deaths.trim().length()==0 || date.trim().length()==0){
             new Alert(Alert.AlertType.ERROR, "The fields cannot be empty", ButtonType.OK).show();
         }
@@ -155,7 +157,6 @@ public class GlobalController {
 
             while(rst.next()){
                 String countStr = rst.getString(1);
-                System.out.println(countStr);
                 count = Integer.parseInt(countStr);
 
             }
