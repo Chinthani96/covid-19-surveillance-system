@@ -13,7 +13,7 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try {
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/covid19_Info","root","");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/covid19_Info","root","modaDinindu1");
             } catch (SQLException e) {
                 e.printStackTrace();
             }

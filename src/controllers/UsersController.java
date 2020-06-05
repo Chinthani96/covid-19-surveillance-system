@@ -46,12 +46,7 @@ public class UsersController {
         cmbQuarantineCenters.setVisible(false);
         loadUsers();
 
-        txtUsername.setDisable(true);
-        txtEmail.setDisable(true);
-        txtName.setDisable(true);
-        txtPassword.setDisable(true);
-        txtTel.setDisable(true);
-        cmbUserRole.setDisable(true);
+        disableTextFields();
 
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
@@ -84,6 +79,8 @@ public class UsersController {
                         if(selectedRole==null){
                             return;
                         }
+
+                        enableTextFields();
 
                          if(selectedRole.equals("Hospital IT")){
                              loadHospitals();
@@ -188,14 +185,8 @@ public class UsersController {
         cmbQuarantineCenters.setVisible(false);
         cmbHospitals.setVisible(false);
 
-        txtUsername.setDisable(false);
-        txtEmail.setDisable(false);
-        txtName.setDisable(false);
-        txtPassword.setDisable(false);
-        txtTel.setDisable(false);
-        cmbUserRole.setDisable(false);
-
         clearTextFields();
+        enableTextFields();
         loadUsers();
 
     }
@@ -503,6 +494,7 @@ public class UsersController {
         }
     }
 
+    @SuppressWarnings("Duplicates")
     private void clearTextFields(){
         txtName.clear();
         txtEmail.clear();
@@ -510,5 +502,25 @@ public class UsersController {
         txtTel.clear();
         txtUsername.clear();
         cmbUserRole.getSelectionModel().clearSelection();
+    }
+
+    @SuppressWarnings("Duplicates")
+    private void enableTextFields(){
+        txtUsername.setDisable(false);
+        txtEmail.setDisable(false);
+        txtName.setDisable(false);
+        txtPassword.setDisable(false);
+        txtTel.setDisable(false);
+        cmbUserRole.setDisable(false);
+    }
+
+    @SuppressWarnings("Duplicates")
+    private void disableTextFields(){
+        txtUsername.setDisable(true);
+        txtEmail.setDisable(true);
+        txtName.setDisable(true);
+        txtPassword.setDisable(true);
+        txtTel.setDisable(true);
+        cmbUserRole.setDisable(true);
     }
 }

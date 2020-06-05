@@ -1,0 +1,213 @@
+
+# ---------------------------user-------------------------------------------------------------------
+CREATE TABLE user(
+                   username VARCHAR(50),
+                   password VARCHAR(50),
+                   name VARCHAR(100),
+                   contact_no VARCHAR(11),
+                   email VARCHAR(50),
+                   role VARCHAR(50),
+                   CONSTRAINT PRIMARY KEY (username)
+);
+
+DROP TABLE user;
+
+INSERT INTO user
+VALUES('chinthani.seneviratne','chinthani123','Chinthani Seneviratne', '077-5323514', 'chinthani.seneviratne@gmail.com','Admin'),
+      ('dinindu.seneviratne','dinindu123','Dinindu Seneviratne', '077-3594648', 'dinindu.seneviratne@gmail.com','PSTF'),
+      ('username1','username1_123','user1', '077-2975451', 'user1@gmail.com','Hospital IT'),
+      ('username2','username2_123','user2', '077-5323514', 'user2@gmail.com','PSTF'),
+      ('username3','username3_123','user3', '077-5323514', 'user3@gmail.com','Admin'),
+      ('username4','username4_123','user4', '077-5323514', 'user4@gmail.com','Quarantine Center IT');
+
+SELECT * FROM user;
+# ---------------------------hospital-------------------------------------------------------------------
+
+CREATE TABLE hospital(
+  id VARCHAR(4),
+  name VARCHAR(50),
+  city VARCHAR(50),
+  district VARCHAR(50),
+  capacity INT,
+  director VARCHAR(50),
+  directorContactNo VARCHAR(50),
+  tel1 VARCHAR(11),
+  tel2 VARCHAR(11),
+  fax VARCHAR(30),
+  email VARCHAR(50),
+  CONSTRAINT PRIMARY KEY (id)
+);
+
+INSERT INTO hospital
+VALUES ('H001','hospital1','city1','Western-Colombo',100,'Director1','077-5323514','011-2624240','011-2632240','123-4567891','hospital1@gmail.com'),
+       ('H002','hospital2','city2','Western-Colombo',200,'Director2','077-5323514','011-2624240','011-2632240','123-4567891','hospital2@gmail.com'),
+       ('H003','hospital3','city3','Western-Colombo',100,'Director3','077-5323514','011-2624240','011-2632240','123-4567891','hospital3@gmail.com'),
+       ('H004','hospital4','city4','Western-Colombo',150,'Director4','077-5323514','011-2624240','011-2632240','123-4567891','hospital4@gmail.com'),
+       ('H005','hospital5','city5','Western-Colombo',100,'Director5','077-5323514','011-2624240','011-2632240','123-4567891','hospital5@gmail.com'),
+       ('H006','hospital6','city6','Western-Colombo',100,'Director6','077-5323514','011-2624240','011-2632240','123-4567891','hospital6@gmail.com'),
+       ('H007','hospital7','city7','Western-Colombo',100,'Director7','077-5323514','011-2624240','011-2632240','123-4567891','hospital7@gmail.com'),
+       ('H008','hospital8','city8','Western-Colombo',100,'Director8','077-5323514','011-2624240','011-2632240','123-4567891','hospital8@gmail.com');
+
+SELECT * FROM hospital;
+DROP TABLE hospital;
+
+# ---------------------------quarantineCenter-------------------------------------------------------------------
+CREATE TABLE qurantineCenter(
+  id VARCHAR(4),
+  name VARCHAR(50),
+  city VARCHAR(50),
+  district VARCHAR(50),
+  head VARCHAR(50),
+  headContactNo VARCHAR(11),
+  tel1 VARCHAR(11),
+  tel2 VARCHAR(11),
+  capacity INT,
+  CONSTRAINT PRIMARY KEY (id)
+);
+
+INSERT INTO qurantineCenter
+VALUES ('Q001','QCenter1','city1','Colombo','head1','077-1231234','011-2134567','011-2134568',100),
+       ('Q002','QCenter2','city2','Colombo','head2','077-1231234','011-2134567','011-2134568',100),
+       ('Q003','QCenter3','city3','Colombo','head3','077-1231234','011-2134567','011-2134568',100),
+       ('Q004','QCenter4','city4','Colombo','head4','077-1231234','011-2134567','011-2134568',100),
+       ('Q005','QCenter5','city5','Colombo','head5','077-1231234','011-2134567','011-2134568',100),
+       ('Q006','QCenter6','city6','Colombo','head6','077-1231234','011-2134567','011-2134568',100);
+DROP TABLE qurantineCenter
+SELECT * FROM qurantineCenter;
+# ---------------------------user_hospital-------------------------------------------------------------------
+CREATE TABLE user_hospital(
+  username VARCHAR(50),
+  hospital_id VARCHAR(4),
+  CONSTRAINT PRIMARY KEY (username,hospital_id),
+  CONSTRAINT FOREIGN KEY (username) REFERENCES user(username),
+  CONSTRAINT FOREIGN KEY (hospital_id) REFERENCES hospital(id)
+);
+DROP TABLE user_hospital
+SELECT * FROM user_hospital;
+# ---------------------------user_qurantineCenter-------------------------------------------------------------------
+CREATE TABLE user_qurantineCenter(
+                                   username VARCHAR(50),
+                                   quarantineCenter_id VARCHAR(4),
+                                   CONSTRAINT PRIMARY KEY (username,quarantineCenter_id),
+                                   CONSTRAINT FOREIGN KEY (username) REFERENCES user(username),
+                                   CONSTRAINT FOREIGN KEY (quarantineCenter_id) REFERENCES qurantineCenter(id)
+);
+DROP TABLE user_qurantineCenter
+SELECT * FROM user_qurantineCenter;
+
+#-------------------------people-------------------------------------------------------------------------------------
+
+CREATE TABLE people(
+  id INT AUTO_INCREMENT,
+  first_name VARCHAR(45),
+  last_name VARCHAR(45),
+  address VARCHAR(100),
+  city VARCHAR(45),
+  district VARCHAR(45),
+  province VARCHAR(45),
+  nic VARCHAR(15),
+  contact_number VARCHAR(45),
+  blood_group VARCHAR(45),
+  CONSTRAINT PRIMARY KEY(id)
+)
+
+#-------------------------covid_positive-------------------------------------------------------------------------------------
+
+CREATE TABLE covid_positive(
+  id int,
+  date DATETIME,
+  found VARCHAR(500),
+  CONSTRAINT PRIMARY KEY(id,date),
+  CONSTRAINT FOREIGN KEY(id) REFERENCES people(id)
+)
+
+#-------------------------suspected_people-------------------------------------------------------------------------------------
+
+CREATE TABLE suspected_people(
+  id INT,
+  reason VARCHAR(500),
+  date DATETIME,
+  CONSTRAINT PRIMARY KEY(id,date),
+  CONSTRAINT FOREIGN KEY(id) REFERENCES people(id)
+)
+
+#-------------------------quarantined_people-------------------------------------------------------------------------------------
+
+CREATE TABLE quarantine_people(
+  id INT,
+  center VARCHAR(4),
+  reason VARCHAR(500),
+  entered_date DATETIME,
+  CONSTRAINT PRIMARY KEY(id),
+  CONSTARINT FOREIGN KEY(center) REFERENCES quarantineCenter(id),
+  CONSTRAINT FOREIGN KEY(id) REFERENCES people(id)
+)
+
+#-------------------------reference-------------------------------------------------------------------------------------
+
+CREATE TABLE reference(
+  suspected_id INT,
+  reference_id INT,
+  connection VARCHAR(500),
+  CONSTRAINT PRIMARY KEY(suspected_id,reference_id),
+  CONSTRAINT FOREIGN KEY(suspected_id) REFERENCES suspected_people(id),
+  CONSTRAINT FOREIGN KEY(reference_id) REFERENCES people(id)
+)
+
+#-------------------------patient-------------------------------------------------------------------------------------
+
+CREATE TABLE patient(
+  id INT,
+  hospital VARCHAR(4),
+  date DATETIME,
+  reason VARCHAR(500),
+  CONSTRAINT PRIMARY KEY(id,hospital,date),
+  CONSTRAINT FOREIGN KEY(id) REFERENCES people(id),
+  CONSTRAINT FOREIGN KEY(hospital) REFERENCES hospital(id)
+)
+
+#-------------------------auto_remove-------------------------------------------------------------------------------------
+
+CREATE TABLE auto_remove(
+  id INT,
+  date DATETIME,
+  CONSTRAINT PRIMARY KEY(id),
+  CONSTRAINT FOREIGN KEY(id) REFERENCES suspected(id)
+)
+
+#-------------------------exit_data-------------------------------------------------------------------------------------
+
+CREATE TABLE exit_data(
+  id INT,
+  exit_reason ENUM('DISCHARGED','TRANSFERED','DEAD'),
+  from INT,
+  to VARCHAR(45),
+  location ENUM('HOSPITAL','QUARANTINE CENTER'),
+  date DATETIME,
+  CONSTRAINT PRIMARY KEY(id,from,location),
+  CONSTRAINT FOREIGN KEY(id) REFERENCES people(id),
+  CONSTRAINT FOREIGN KEY(from) REFERENCES quarantined_people(id),
+  CONSTRAINT FOREIGN KEY(from) REFERENCES patient(id)
+)
+
+# ----------------------------------------------globalData--------------------------------------------------
+
+CREATE TABLE globalData(
+  updateId INT AUTO_INCREMENT,
+  updatedDate DATE,
+  cumulativeCount INT,
+  recoveries INT,
+  deaths INT,
+  CONSTRAINT PRIMARY KEY (updateId)
+);
+
+INSERT INTO globalData(updatedDate, cumulativeCount, recoveries, deaths)
+VALUES('2020-05-16',4911816,1919737,320458),
+      ('2020-05-17',4911816,1919737,320458),
+      ('2020-05-18',4911816,1919737,320458),
+      ('2020-05-19',4911816,1919737,320458);
+
+
+
+
+

@@ -43,16 +43,8 @@ public class QuarantineCentresController {
         btnSave.setDisable(true);
         btnDelete.setDisable(true);
 
-        txtName.setDisable(true);
-        txtID.setDisable(true);
-        txtCapacity.setDisable(true);
-        txtCity.setDisable(true);
-        txtHead.setDisable(true);
-        txtHeadContact.setDisable(true);
-        txtTel1.setDisable(true);
-        txtTel2.setDisable(true);
-        cmbDistricts.setDisable(true);
 
+        disableTextFields();
         loadQuarantineCenters();
 
         ObservableList districts = cmbDistricts.getItems();
@@ -74,6 +66,7 @@ public class QuarantineCentresController {
                 if(selectedCenter==null){
                     return;
                 }
+                enableTextFields();
                 btnSave.setDisable(false);
                 btnDelete.setDisable(false);
                 btnSave.setText("Update");
@@ -112,15 +105,7 @@ public class QuarantineCentresController {
         btnDelete.setDisable(true);
         btnSave.setDisable(false);
 
-        txtName.setDisable(false);
-        txtID.setDisable(false);
-        txtCapacity.setDisable(false);
-        txtCity.setDisable(false);
-        txtHead.setDisable(false);
-        txtHeadContact.setDisable(false);
-        txtTel1.setDisable(false);
-        txtTel2.setDisable(false);
-        cmbDistricts.setDisable(false);
+        enableTextFields();
 
         clearTextFields();
 
@@ -351,5 +336,31 @@ public class QuarantineCentresController {
         txtTel1.clear();
         txtTel2.clear();
         cmbDistricts.getSelectionModel().clearSelection();
+    }
+
+    @SuppressWarnings("Duplicates")
+    private void enableTextFields(){
+        txtName.setDisable(false);
+        txtID.setDisable(false);
+        txtCapacity.setDisable(false);
+        txtCity.setDisable(false);
+        txtHead.setDisable(false);
+        txtHeadContact.setDisable(false);
+        txtTel1.setDisable(false);
+        txtTel2.setDisable(false);
+        cmbDistricts.setDisable(false);
+    }
+
+    @SuppressWarnings("Duplicates")
+    private void disableTextFields(){
+        txtName.setDisable(true);
+        txtID.setDisable(true);
+        txtCapacity.setDisable(true);
+        txtCity.setDisable(true);
+        txtHead.setDisable(true);
+        txtHeadContact.setDisable(true);
+        txtTel1.setDisable(true);
+        txtTel2.setDisable(true);
+        cmbDistricts.setDisable(true);
     }
 }

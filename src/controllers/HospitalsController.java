@@ -44,19 +44,8 @@ public class HospitalsController {
     public void initialize(){
 
         //basic initializations
-        btnSave.setDisable(true);
-        btnDelete.setDisable(true);
-        txtName.setDisable(true);
-        txtID.setDisable(true);
-        txtCapacity.setDisable(true);
-        txtCity.setDisable(true);
-        txtDirector.setDisable(true);
-        txtDirectorContact.setDisable(true);
-        txtEmail.setDisable(true);
-        txtFax.setDisable(true);
-        txtTel1.setDisable(true);
-        txtTel2.setDisable(true);
-        cmbDistricts.setDisable(true);
+        disableTextFields();
+
 
         loadHospitals();
 
@@ -80,6 +69,7 @@ public class HospitalsController {
                 }
                 btnSave.setDisable(false);
                 btnDelete.setDisable(false);
+                enableTextFields();
                 btnSave.setText("Update");
                 txtID.setText(selectedHospital.getId());
                 txtName.setText(selectedHospital.getName());
@@ -117,17 +107,7 @@ public class HospitalsController {
         btnSave.setDisable(false);
         btnSave.setText("Save");
 
-        txtName.setDisable(false);
-        txtID.setDisable(false);
-        txtCapacity.setDisable(false);
-        txtCity.setDisable(false);
-        txtDirector.setDisable(false);
-        txtDirectorContact.setDisable(false);
-        cmbDistricts.setDisable(false);
-        txtEmail.setDisable(false);
-        txtFax.setDisable(false);
-        txtTel1.setDisable(false);
-        txtTel2.setDisable(false);
+        enableTextFields();
 
         clearTextFields();
 
@@ -150,7 +130,7 @@ public class HospitalsController {
         String tel2 = txtTel2.getText();
         String fax = txtFax.getText();
         String email = txtEmail.getText();
-//        int capacityInt = Integer.parseInt(capacity);
+
 
         //-----------------------------------------------------------------------------VALIDATIONS----------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -364,5 +344,38 @@ public class HospitalsController {
         txtTel2.clear();
         cmbDistricts.getSelectionModel().clearSelection();
         txtEmail.clear();
+    }
+
+    @SuppressWarnings("Dulpicates")
+    private void enableTextFields(){
+        txtName.setDisable(false);
+        txtID.setDisable(false);
+        txtCapacity.setDisable(false);
+        txtCity.setDisable(false);
+        txtDirector.setDisable(false);
+        txtDirectorContact.setDisable(false);
+        cmbDistricts.setDisable(false);
+        txtEmail.setDisable(false);
+        txtFax.setDisable(false);
+        txtTel1.setDisable(false);
+        txtTel2.setDisable(false);
+
+    }
+
+    @SuppressWarnings("Dulpicates")
+    private void disableTextFields(){
+        btnSave.setDisable(true);
+        btnDelete.setDisable(true);
+        txtName.setDisable(true);
+        txtID.setDisable(true);
+        txtCapacity.setDisable(true);
+        txtCity.setDisable(true);
+        txtDirector.setDisable(true);
+        txtDirectorContact.setDisable(true);
+        txtEmail.setDisable(true);
+        txtFax.setDisable(true);
+        txtTel1.setDisable(true);
+        txtTel2.setDisable(true);
+        cmbDistricts.setDisable(true);
     }
 }
