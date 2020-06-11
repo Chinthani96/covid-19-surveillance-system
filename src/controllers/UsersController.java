@@ -2,7 +2,6 @@ package controllers;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 import db.DBConnection;
 import javafx.beans.value.ChangeListener;
@@ -11,7 +10,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import util.HospitalsTM;
 import util.QuarantineCentersTM;
 import util.UserTM;
@@ -22,8 +23,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+
 public class UsersController {
-    public JFXListView<UserTM> lstUsers;
     public TextField txtSearchUser;
     public JFXButton btnAddUser;
     public JFXTextField txtName;
@@ -33,13 +34,13 @@ public class UsersController {
     public JFXButton btnSave;
     public JFXButton btnDelete;
     public JFXTextField txtPassword;
-    public JFXComboBox<String> cmbUserRole;
+    public JFXComboBox cmbUserRole;
     public JFXComboBox<HospitalsTM> cmbHospitals;
     public JFXComboBox<QuarantineCentersTM> cmbQuarantineCenters;
+    public TableView<UserTM> tblUsers;
 
     ArrayList<UserTM> usersList = new ArrayList<>();
 
-    @SuppressWarnings("Duplicates")
     public void initialize(){
 
         cmbHospitals.setVisible(false);
@@ -52,17 +53,25 @@ public class UsersController {
         btnDelete.setDisable(true);
 
 
+        //mapping columns
+        tblUsers.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("username"));
+        tblUsers.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("name"));
+        tblUsers.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("role"));
+        tblUsers.getColumns().get(3).setCellValueFactory(new PropertyValueFactory<>("email"));
+        tblUsers.getColumns().get(4).setCellValueFactory(new PropertyValueFactory<>("password"));
+        tblUsers.getColumns().get(5).setCellValueFactory(new PropertyValueFactory<>("contact"));
 
 
         ObservableList userRoles = cmbUserRole.getItems();
         userRoles.addAll("Admin","PSTF","Hospital IT","Quarantine Center IT");
 
-        lstUsers.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<UserTM>() {
+        tblUsers.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<UserTM>() {
             @Override
             public void changed(ObservableValue<? extends UserTM> observable, UserTM oldValue, UserTM selectedUser) {
                 if(selectedUser==null){
                     return;
                 }
+                enableTextFields();
                 btnSave.setDisable(false);
                 btnDelete.setDisable(false);
                 btnSave.setText("Update");
@@ -73,75 +82,64 @@ public class UsersController {
                 txtTel.setText(selectedUser.getContact());
                 cmbUserRole.getSelectionModel().select(selectedUser.getRole());
 
-                cmbUserRole.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-                    @Override
-                    public void changed(ObservableValue<? extends String> observable, String oldValue, String selectedRole) {
-                        if(selectedRole==null){
-                            return;
+                if (cmbUserRole.getSelectionModel().getSelectedItem().equals("Hospital IT")) {
+                    cmbHospitals.setVisible(true);
+                    cmbQuarantineCenters.setVisible(false);
+
+                    try {
+                        PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("SELECT hospital_id FROM user_hospital WHERE username=?");
+                        pst.setObject(1,txtUsername.getText());
+                        ResultSet rst = pst.executeQuery();
+
+                        ObservableList<HospitalsTM> hospitals = cmbHospitals.getItems();
+                        loadHospitals();
+
+                        while(rst.next()){
+                            String hospitalId = rst.getString(1);
+
+                            for (HospitalsTM hospital:hospitals) {
+                                if (hospital.getId().equals(hospitalId)) {
+                                    cmbHospitals.getSelectionModel().select(hospital);
+                                }
+                            }
                         }
 
-                        enableTextFields();
-
-                         if(selectedRole.equals("Hospital IT")){
-                             loadHospitals();
-                             cmbQuarantineCenters.setVisible(false);
-                             cmbHospitals.setVisible(true);
-
-
-                             ObservableList<HospitalsTM> hospitals = cmbHospitals.getItems();
-
-                             try {
-                                 Statement stm = DBConnection.getInstance().getConnection().createStatement();
-                                 ResultSet rst = stm.executeQuery("SELECT hospital_id FROM user_hospital WHERE username='"+selectedUser.getUsername()+"'");
-
-                                 while(rst.next()){
-                                     String hospitalId = rst.getString(1);
-
-
-                                     for (HospitalsTM hospital:hospitals){
-                                          if(hospital.getId().equals(hospitalId)){
-                                              cmbHospitals.getSelectionModel().select(hospital);
-                                          }
-                                     }
-                                 }
-
-                             } catch (SQLException e) {
-                                 e.printStackTrace();
-                             }
-
-
-                         }
-                         else if(selectedRole.equals("Quarantine Center IT")){
-                             cmbHospitals.setVisible(false);
-                             cmbQuarantineCenters.setVisible(true);
-                             loadQuarantineCenters();
-
-                             ObservableList<QuarantineCentersTM> quarantineCenters = cmbQuarantineCenters.getItems();
-
-                             try {
-                                 Statement stm = DBConnection.getInstance().getConnection().createStatement();
-                                 ResultSet rst = stm.executeQuery("SELECT quarantineCenter_id FROM user_qurantineCenter WHERE username='" + selectedUser.getUsername() + "'");
-
-                                 while(rst.next()){
-                                     String qId = rst.getString(1);
-
-                                     for (QuarantineCentersTM center : quarantineCenters){
-                                         if(center.getId().equals(qId)){
-                                             cmbQuarantineCenters.getSelectionModel().select(center);
-                                         }
-                                     }
-                                 }
-
-                             } catch (SQLException e) {
-                                 e.printStackTrace();
-                             }
-                         }
-                         else{
-                             cmbQuarantineCenters.setVisible(false);
-                             cmbHospitals.setVisible(false);
-                         }
+                    } catch (SQLException e) {
+                        e.printStackTrace();
                     }
-                });
+
+                }
+                else if(cmbUserRole.getSelectionModel().getSelectedItem().equals("Quarantine Center IT")){
+                    cmbQuarantineCenters.setVisible(true);
+                    cmbHospitals.setVisible(false);
+                    loadQuarantineCenters();
+
+                    try {
+                        PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("SELECT quarantineCenter_id FROM user_qurantineCenter WHERE username=?");
+                        pst.setObject(1,txtUsername.getText());
+                        ResultSet rst = pst.executeQuery();
+
+                        ObservableList<QuarantineCentersTM> centers = cmbQuarantineCenters.getItems();
+
+                        while(rst.next()){
+                            String centerId = rst.getString(1);
+
+                            for (QuarantineCentersTM center:centers){
+                                if(center.getId().equals(centerId)){
+                                    cmbQuarantineCenters.getSelectionModel().select(center);
+                                }
+                            }
+                        }
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                else{
+                    cmbHospitals.setVisible(false);
+                    cmbQuarantineCenters.setVisible(false);
+                }
 
             }
         });
@@ -153,11 +151,54 @@ public class UsersController {
                     cmbHospitals.setVisible(true);
                     cmbQuarantineCenters.setVisible(false);
                     loadHospitals();
+
+                    try {
+                        PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("SELECT hospital_id FROM user_hospital WHERE username=?");
+                        pst.setObject(1,txtUsername.getText());
+                        ResultSet rst = pst.executeQuery();
+
+                        ObservableList<HospitalsTM> hospitals = cmbHospitals.getItems();
+                        loadHospitals();
+
+                        while(rst.next()){
+                            String hospitalId = rst.getString(1);
+
+                            for (HospitalsTM hospital:hospitals) {
+                                if (hospital.getId().equals(hospitalId)) {
+                                    cmbHospitals.getSelectionModel().select(hospital);
+                                }
+                            }
+                        }
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
-                else if(selectedRole.equals("Quarantine Center IT")){
+                if(selectedRole.equals("Quarantine Center IT")){
                     cmbQuarantineCenters.setVisible(true);
                     cmbHospitals.setVisible(false);
                     loadQuarantineCenters();
+
+                    try {
+                        PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("SELECT quarantineCenter_id FROM user_qurantineCenter WHERE username=?");
+                        pst.setObject(1,txtUsername.getText());
+                        ResultSet rst = pst.executeQuery();
+
+                        ObservableList<QuarantineCentersTM> centers = cmbQuarantineCenters.getItems();
+
+                        while(rst.next()){
+                            String centerId = rst.getString(1);
+
+                            for (QuarantineCentersTM center:centers){
+                                if(center.getId().equals(centerId)){
+                                    cmbQuarantineCenters.getSelectionModel().select(center);
+                                }
+                            }
+                        }
+
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -165,7 +206,7 @@ public class UsersController {
         txtSearchUser.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                ObservableList<UserTM> users = lstUsers.getItems();
+                ObservableList<UserTM> users = tblUsers.getItems();
                 users.clear();
 
                 for (UserTM user: usersList){
@@ -203,7 +244,7 @@ public class UsersController {
         String username = txtUsername.getText();
         String contact = txtTel.getText();
         String password = txtPassword.getText();
-        String role = cmbUserRole.getSelectionModel().getSelectedItem();
+        String role = cmbUserRole.getSelectionModel().getSelectedItem().toString();
         String id;
 
         if(name.trim().length()==0 ||
@@ -213,7 +254,7 @@ public class UsersController {
                 password.trim().length()==0 ||
                 role.trim().length()==0
         ){
-            new Alert(Alert.AlertType.ERROR,"The fields cannot be empty. Please fill all fields",ButtonType.OK).show();
+            new Alert(Alert.AlertType.ERROR,"The fields cannot be empty. Please fill all fields", ButtonType.OK).show();
         }
 
         if(role.equals("Hospital IT")) {
@@ -227,38 +268,6 @@ public class UsersController {
 
 
         if(btnSave.getText().equals("Update")){
-            if(role.equals("Hospital IT")){
-                try {
-                    PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("UPDATE user_hospital SET hospital_id=? WHERE username='" + username + "'");
-                    pst.setObject(1,id);
-                    int affectedRows = pst.executeUpdate();
-
-                    if(affectedRows<0){
-                        new Alert(Alert.AlertType.ERROR,"Failed to update entry", ButtonType.OK).show();
-                    }
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-            if(role.equals("Quarantine Center IT")){
-                try {
-                    PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("UPDATE user_qurantineCenter SET quarantineCenter_id=? WHERE username='" + username + "'");
-                    pst.setObject(1,id);
-                    int affectedRows = pst.executeUpdate();
-
-                    if(affectedRows<0){
-                        new Alert(Alert.AlertType.ERROR,"Failed to update entry", ButtonType.OK).show();
-                    }
-
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-
-
             try {
                 PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("UPDATE user SET username=?, password=?, `name`=?, contact_no=? ,email=? ,role=? WHERE name='" + name + "'");
                 pst.setObject(1,username);
@@ -276,6 +285,76 @@ public class UsersController {
 
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+
+            if(role.equals("Hospital IT")){
+                try {
+                    PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("SELECT hospitalId FROM user_hospital WHERE username=?");
+                    pst.setObject(1,name);
+                    ResultSet resultSet = pst.executeQuery();
+
+                    if(!resultSet.next()){
+                        PreparedStatement preparedStatement;
+                        preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("DELETE FROM user_center WHERE username=?");
+                        preparedStatement.setObject(1,name);
+                        preparedStatement.executeUpdate();
+
+
+                        preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO user_hospital VALUES (?,?)");
+                        preparedStatement.setObject(1,name);
+//                        preparedStatement.setObject(2,cmbHospitals.getSelectionModel().getSelectedItem().getId());
+                        preparedStatement.setObject(2,id);
+                        preparedStatement.executeUpdate();
+
+
+                    }
+                    else{
+                        PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("UPDATE user_hospital SET username=?,hospitalId=? WHERE username='"+txtUsername.getText()+"'");
+                        preparedStatement.setObject(1,name);
+                        preparedStatement.setObject(2,id);
+                        preparedStatement.executeUpdate();
+
+                    }
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            if(role.equals("Quarantine Center IT")){
+                try {
+                    PreparedStatement pst = DBConnection.getInstance().getConnection().prepareStatement("SELECT centerId FROM user_center WHERE username=?");
+                    pst.setObject(1,name);
+                    ResultSet resultSet = pst.executeQuery();
+
+                    if(!resultSet.next()){
+
+                        PreparedStatement preparedStatement;
+                        preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("DELETE FROM user_hospital WHERE username=?");
+                        preparedStatement.setObject(1,name);
+                        preparedStatement.executeUpdate();
+
+
+                        preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("INSERT INTO user_center VALUES (?,?)");
+                        preparedStatement.setObject(1,name);
+                        preparedStatement.setObject(2,id);
+                        preparedStatement.executeUpdate();
+
+
+                    }
+                    else{
+                        PreparedStatement preparedStatement = DBConnection.getInstance().getConnection().prepareStatement("UPDATE user_center SET username=?,centerId=? WHERE username='"+txtUsername.getText()+"'");
+                        preparedStatement.setObject(1,name);
+                        preparedStatement.setObject(2,id);
+                        preparedStatement.executeUpdate();
+                    }
+
+
+
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
@@ -354,7 +433,7 @@ public class UsersController {
         clearTextFields();
 
 
-        String role = cmbUserRole.getSelectionModel().getSelectedItem();
+        String role = cmbUserRole.getSelectionModel().getSelectedItem().toString();
 
         if(role.equals("Hospital IT")){
             try {
@@ -403,7 +482,7 @@ public class UsersController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    loadUsers();
+        loadUsers();
 
     }
 
@@ -413,7 +492,7 @@ public class UsersController {
             Statement stm = DBConnection.getInstance().getConnection().createStatement();
             ResultSet rst = stm.executeQuery("SELECT * FROM user");
 
-            ObservableList<UserTM> users = lstUsers.getItems();
+            ObservableList<UserTM> users = tblUsers.getItems();
             users.clear();
 
             while(rst.next()){

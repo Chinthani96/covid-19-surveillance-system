@@ -2,9 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,7 +20,6 @@
             <Font name="Charter Bold" size="24.0" />
          </font></Label>
       <Line endX="548.0" layoutX="126.0" layoutY="88.0" startX="-100.0" />
-      <JFXListView fx:id="lstUsers" layoutX="26.0" layoutY="155.0" prefHeight="166.0" prefWidth="648.0" />
       <TextField fx:id="txtSearchUser" layoutX="26.0" layoutY="124.0" prefHeight="31.0" prefWidth="649.0" promptText="Search User" />
       <JFXButton fx:id="btnAddUser" layoutX="27.0" layoutY="325.0" onAction="#btnAddUser_OnAction" prefHeight="24.0" prefWidth="647.0" style="-fx-background-color: black;" text="Add User" textFill="#f2e8e8" />
       <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="283.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
@@ -41,5 +41,15 @@
             <JFXComboBox fx:id="cmbQuarantineCenters" layoutX="45.0" layoutY="279.0" prefHeight="21.0" prefWidth="555.0" promptText="User Location" />
          </children>
       </AnchorPane>
+      <TableView fx:id="tblUsers" layoutX="26.0" layoutY="155.0" prefHeight="171.0" prefWidth="649.0">
+        <columns>
+          <TableColumn prefWidth="192.0" text="Name" />
+          <TableColumn prefWidth="231.0" text="Username" />
+            <TableColumn prefWidth="225.0" text="Role" />
+            <TableColumn prefWidth="225.0" text="contact" />
+            <TableColumn prefWidth="225.0" text="email" />
+            <TableColumn prefWidth="225.0" text="password" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

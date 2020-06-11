@@ -3,21 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b8e67409-1350-4d5c-8635-0c91a929c2b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/HospitalsController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/HospitalsController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/HospitalsController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/HospitalsController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/HospitalsController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/HospitalsController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/QuarantineCentresController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/QuarantineCentresController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/QuarantineCentresController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/QuarantineCentresController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/QuarantineCentresController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/QuarantineCentresController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController$1$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController$1$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Covid-19InfoSystem/controllers/UsersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/HospitalsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/HospitalsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/QuarantineCentresController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/QuarantineCentresController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/UsersController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/UsersController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/UsersController2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Users.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/Users2.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/Users2.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -94,99 +83,57 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/UsersController.java">
+        <entry file="file://$PROJECT_DIR$/src/controllers/UsersController2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="82" column="43" selection-start-line="82" selection-start-column="43" selection-end-line="82" selection-end-column="43" />
+            <state relative-caret-position="10064">
+              <caret line="592" column="38" lean-forward="true" selection-start-line="592" selection-start-column="38" selection-end-line="592" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#9167#9198#0" expanded="true" />
+                <element signature="e#9543#9574#0" expanded="true" />
+                <element signature="e#15290#15321#0" expanded="true" />
+                <element signature="e#17473#17504#0" expanded="true" />
+                <element signature="e#18404#18435#0" expanded="true" />
+                <element signature="e#19569#19600#0" expanded="true" />
+                <element signature="e#20682#20713#0" expanded="true" />
+                <element signature="e#20952#20983#0" expanded="true" />
+                <element signature="e#21254#21285#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/QuarantineCentresController.java">
+        <entry file="file://$PROJECT_DIR$/src/util/HospitalsTM.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/HospitalsController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1938">
-              <caret line="132" selection-start-line="132" selection-end-line="132" />
+            <state relative-caret-position="1326">
+              <caret line="122" column="25" selection-start-line="122" selection-start-column="25" selection-end-line="122" selection-end-column="25" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2496#2497#0" expanded="true" />
+                <element signature="e#2528#2529#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/Users2.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
+        <entry file="file://$PROJECT_DIR$/src/util/UserTM.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+            <state relative-caret-position="867">
+              <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+              <folding>
+                <element signature="e#558#559#0" expanded="true" />
+                <element signature="e#589#590#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/controllers/UsersController2.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/Users.fxml">
-          <provider editor-type-id="JavaFX-Scene-Builder" />
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="43" column="14" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/GlobalController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/db/DBConnection.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/DashboardController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1479">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
+            <state relative-caret-position="255">
+              <caret line="15" column="108" selection-start-line="15" selection-start-column="108" selection-end-line="15" selection-end-column="108" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -226,12 +173,12 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6c8a1bf6-ccdf-4d00-9173-72a588f71b21/console.sql" />
         <option value="$PROJECT_DIR$/src/view/QuarantineCenters.fxml" />
         <option value="$PROJECT_DIR$/src/controllers/GlobalController.java" />
-        <option value="$PROJECT_DIR$/src/db/DBConnection.java" />
         <option value="$PROJECT_DIR$/src/controllers/UsersController.java" />
         <option value="$PROJECT_DIR$/src/controllers/HospitalsController.java" />
         <option value="$PROJECT_DIR$/src/controllers/QuarantineCentresController.java" />
         <option value="$PROJECT_DIR$/src/view/Users2.fxml" />
         <option value="$PROJECT_DIR$/src/controllers/UsersController2.java" />
+        <option value="$PROJECT_DIR$/src/db/DBConnection.java" />
       </list>
     </option>
   </component>
@@ -276,6 +223,18 @@
               <item name="Covid-19InfoSystem" type="b2602c69:ProjectViewProjectNode" />
               <item name="Covid-19InfoSystem" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Covid-19InfoSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Covid-19InfoSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Covid-19InfoSystem" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Covid-19InfoSystem" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -288,7 +247,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1590998684284" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1591908924130" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="node.js.path.for.package.jscs" value="project" />
     <property name="node.js.selected.package.jscs" value="" />
@@ -383,11 +342,13 @@
       <workItem from="1591032545388" duration="516000" />
       <workItem from="1591166594358" duration="580000" />
       <workItem from="1591172429478" duration="6000" />
+      <workItem from="1591333606314" duration="942000" />
+      <workItem from="1591904300577" duration="4133000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="110561000" />
+    <option name="totallyTimeSpent" value="115636000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -401,7 +362,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="825" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.22262248" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22622478" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -418,7 +379,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32913166" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32587412" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32492998" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3292232" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.3277311" />
@@ -433,7 +394,7 @@
       <window_info anchor="right" id="Database" order="8" weight="0.3299712" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22262248" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22622478" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -450,7 +411,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32913166" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32587412" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32492998" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3292232" />
       <window_info anchor="bottom" id="Database Console" order="13" weight="0.3277311" />
@@ -481,12 +442,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/Dashboard.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
           <caret line="77" column="122" selection-start-line="77" selection-start-column="122" selection-end-line="77" selection-end-column="129" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/util/QuarantineCentersTM.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -505,57 +466,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/HospitalsTM.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1180">
-          <caret line="122" column="25" selection-start-line="122" selection-start-column="25" selection-end-line="122" selection-end-column="25" />
-          <folding>
-            <element signature="e#2496#2497#0" expanded="true" />
-            <element signature="e#2528#2529#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/util/UserTM.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
-          <folding>
-            <element signature="e#558#559#0" expanded="true" />
-            <element signature="e#589#590#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://6c8a1bf6-ccdf-4d00-9173-72a588f71b21/schema/covid19_Info/table/user">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://6c8a1bf6-ccdf-4d00-9173-72a588f71b21/schema/covid19_Info/table/user_hospital">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://6c8a1bf6-ccdf-4d00-9173-72a588f71b21/schema/covid19_Info/table/user" />
+    <entry file="das://6c8a1bf6-ccdf-4d00-9173-72a588f71b21/schema/covid19_Info/table/user_hospital" />
     <entry file="file://$PROJECT_DIR$/src/view/Global.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="543">
           <caret line="72" column="36" selection-start-line="72" selection-start-column="36" selection-end-line="72" selection-end-column="36" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/QuarantineCenters.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="23" column="35" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6c8a1bf6-ccdf-4d00-9173-72a588f71b21/console.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -564,38 +491,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://6c8a1bf6-ccdf-4d00-9173-72a588f71b21/schema/covid19_Info/table/globalData">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://6c8a1bf6-ccdf-4d00-9173-72a588f71b21/schema/covid19_Info/table/globalData" />
     <entry file="file://$PROJECT_DIR$/src/view/Hospitals.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="379">
           <caret line="38" column="36" selection-start-line="38" selection-start-column="36" selection-end-line="38" selection-end-column="36" />
         </state>
       </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
     </entry>
-    <entry file="das://6c8a1bf6-ccdf-4d00-9173-72a588f71b21/schema/covid19_Info/table/hospital">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/UsersController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="82" column="43" selection-start-line="82" selection-start-column="43" selection-end-line="82" selection-end-column="43" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://6c8a1bf6-ccdf-4d00-9173-72a588f71b21/schema/covid19_Info/table/hospital" />
     <entry file="file://$PROJECT_DIR$/src/controllers/QuarantineCentresController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -613,36 +518,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Users2.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/Users.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="14" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/GlobalController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/db/DBConnection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -659,10 +538,77 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Users.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="43" column="14" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/Users2.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/UsersController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="557">
+          <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="525" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/UserTM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="867">
+          <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+          <folding>
+            <element signature="e#558#559#0" expanded="true" />
+            <element signature="e#589#590#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/util/HospitalsTM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1326">
+          <caret line="122" column="25" selection-start-line="122" selection-start-column="25" selection-end-line="122" selection-end-column="25" />
+          <folding>
+            <element signature="e#2496#2497#0" expanded="true" />
+            <element signature="e#2528#2529#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/UsersController2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+        <state relative-caret-position="10064">
+          <caret line="592" column="38" lean-forward="true" selection-start-line="592" selection-start-column="38" selection-end-line="592" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9167#9198#0" expanded="true" />
+            <element signature="e#9543#9574#0" expanded="true" />
+            <element signature="e#15290#15321#0" expanded="true" />
+            <element signature="e#17473#17504#0" expanded="true" />
+            <element signature="e#18404#18435#0" expanded="true" />
+            <element signature="e#19569#19600#0" expanded="true" />
+            <element signature="e#20682#20713#0" expanded="true" />
+            <element signature="e#20952#20983#0" expanded="true" />
+            <element signature="e#21254#21285#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/db/DBConnection.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="108" selection-start-line="15" selection-start-column="108" selection-end-line="15" selection-end-column="108" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
