@@ -68,6 +68,7 @@ public class DashboardController {
 
     public void btnHospitals_OnAction(ActionEvent actionEvent) {
         try {
+            System.out.println(actionEvent);
             AnchorPane pane = FXMLLoader.load(this.getClass().getResource("/view/Hospitals.fxml"));
             subAnchorPane.getChildren().setAll(pane);
         } catch (IOException e) {
